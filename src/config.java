@@ -5,20 +5,15 @@ public class config {
     public static void main(String[] args) throws Exception {
 
         String channel = "#robzocker07";
-        String st = "";
-
         boolean isConnected = true;
 
 
 
         //define Bot
         FidschiBot bot = new FidschiBot();
-
         //debug
         bot.setVerbose(true);
-
-        bot.setVerbose(true);
-        bot.connect("irc.chat.twitch.tv", 6667, "oauth:wina1jfkwzqzoraqb0vqy7jes8m93l");
+      //  bot.connect("irc.chat.twitch.tv", 6667, "oauth:wina1jfkwzqzoraqb0vqy7jes8m93l");
         bot.joinChannel(channel);
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
