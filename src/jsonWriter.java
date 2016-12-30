@@ -12,6 +12,7 @@ public class jsonWriter {
         obj.put("reis", jsonReader.reis);
         obj.put("vegan", jsonReader.vegan);
         obj.put("porno", jsonReader.porno);
+        obj.put("fail", jsonReader.fail);
 
         try {
             FileWriter file = new FileWriter("counts.json");

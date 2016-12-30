@@ -1,6 +1,5 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.json.simple.JSONObject;
@@ -13,6 +12,7 @@ public class jsonReader {
     public static long porno;
     public static long vegan;
     public static long reis;
+    public static long fail;
 
     public static void main(String[] args) {
         JSONParser parser = new JSONParser();
@@ -25,11 +25,14 @@ public class jsonReader {
             porno = (long) jsonObject.get("porno");
             reis = (long) jsonObject.get("reis");
             vegan = (long) jsonObject.get("vegan");
+            fail = (long) jsonObject.get("fail");
 
             System.out.println("!vac: " + vac);
             System.out.println("!porno: " + porno);
             System.out.println("!reis: " + reis);
             System.out.println("!vegan: " + vegan);
+            System.out.println("!fail: " + fail);
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

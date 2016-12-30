@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.concurrent.TimeUnit;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,6 +7,7 @@ public class main {
     public static void main(String[] args) throws Exception {
 
         boolean loop = true;
+
 
         //#buffreader
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,6 +25,16 @@ public class main {
         String channel = "#" + br.readLine();
         bot.joinChannel(channel);
 
+        String command = br.readLine();
+        if (command.contains("s"))
+            jsonWriter.main(args);
+        else if (command.contains("e")) {
+            jsonWriter.main(args);
+            System.exit(0);
+            System.out.println(" \n ");
+        }
+
+        //auto save
         while (loop == true) {
             TimeUnit.MINUTES.sleep(5);
             jsonWriter.main(args);
