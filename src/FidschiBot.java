@@ -1,5 +1,7 @@
 import org.jibble.pircbot.PircBot;
 
+
+
 public class FidschiBot extends PircBot {
     public FidschiBot() throws Exception {
         this.setName("derfidschi");
@@ -8,11 +10,13 @@ public class FidschiBot extends PircBot {
     }
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
+
+
         if(message.equalsIgnoreCase("!ts") || message.equalsIgnoreCase("!ts3") || message.equalsIgnoreCase("!teamspeak")) {
             sendMessage(channel, sender + " -> legendarygamer.de");
-        }
+        } else
         if(message.equalsIgnoreCase("!test")) {
-            sendMessage(channel, "test");
+            sendMessage(channel, "test: ");
         }
     }
 }
