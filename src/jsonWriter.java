@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 
 public class jsonWriter {
     public static void main(String[] args) {
+
         System.out.println("Save Command Data");
         JSONObject obj = new JSONObject();
         obj.put("vac", jsonReader.vac);
@@ -20,6 +21,6 @@ public class jsonWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.print(obj);
+        System.out.print(obj + "");
     }
 }

@@ -1,13 +1,16 @@
+import java.util.concurrent.TimeUnit;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import org.json.*;
-import org.json.simple.*;
-
 public class main {
     public static void main(String[] args) throws Exception {
+
+        boolean loop = true;
+
         //#buffreader
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //#readjson
+        jsonReader.main(args);
 
         /*
         *   Start PircBot
@@ -19,5 +22,10 @@ public class main {
         System.out.println("Channel?");
         String channel = "#" + br.readLine();
         bot.joinChannel(channel);
+
+        while (loop == true) {
+            TimeUnit.MINUTES.sleep(5);
+            jsonWriter.main(args);
+        }
     }
 }
