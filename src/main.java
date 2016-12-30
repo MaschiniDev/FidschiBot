@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.concurrent.TimeUnit;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -31,7 +30,6 @@ public class main {
         else if (command.contains("e")) {
             jsonWriter.main(args);
             System.exit(0);
-            System.out.println(" \n ");
         }
 
         //auto save

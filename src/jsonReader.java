@@ -33,7 +33,6 @@ public class jsonReader {
             System.out.println("!vegan: " + vegan);
             System.out.println("!fail: " + fail);
 
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
