@@ -20,14 +20,18 @@ public class main {
         */
         FidschiBot bot = new FidschiBot();
         //join channel
+        System.out.println("------------------------------------------------------");
         System.out.println("Channel?");
         String channel = "#" + br.readLine();
         bot.joinChannel(channel);
+        System.out.println("------------------------------------------------------");
 
         String command = br.readLine();
         if (command.contains("s"))
             jsonWriter.main(args);
         else if (command.contains("e")) {
+            System.out.println("------------------------------------------------------");
+            System.out.println("Shutdown Bot");
             jsonWriter.main(args);
             System.exit(0);
         }

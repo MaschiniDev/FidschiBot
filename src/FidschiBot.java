@@ -14,46 +14,43 @@ public class FidschiBot extends PircBot {
         this.setVerbose(false); //debug
     }
 
-    //timedate
-    String timeStamp = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date());
+    static String timeStamp = new SimpleDateFormat("[HH:mm] ").format(new Date()); //timedate
 
     public void onJoin (String channel, String sender, String login, String hostname) {
-        System.out.println(timeStamp + ": " + sender + " hat angefangen zuzugucken");
+        System.out.println(timeStamp + sender + " guckt zu");
     }
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
-        System.out.println(timeStamp + ": " + sender + ": " + message);
+        System.out.println(timeStamp + sender + ": " + message);
 
         if(message.equalsIgnoreCase("!ts") || message.equalsIgnoreCase("!ts3") || message.equalsIgnoreCase("!teamspeak")) {
             sendMessage(channel, sender + " -> legendarygamer.de");
-            System.out.println("Antworte " + sender +" (!ts)");
+            System.out.println(timeStamp + "Antworte " + sender +" (!ts)");
         } else
         if(message.equalsIgnoreCase("!porno")) {
             jsonReader.porno++;
             sendMessage(channel, "Rob hat schon " + jsonReader.porno + " mal seinen Pornoverlauf gezeigt!");
-            System.out.println("Antworte " + sender + " !porno: " + jsonReader.porno);
+            System.out.println(timeStamp + "Antworte " + sender + " !porno: " + (jsonReader.porno - 1) + " + 1");
         } else
         if(message.equalsIgnoreCase("!fail")) {
             jsonReader.fail++;
             sendMessage(channel, "Nicht schon wieder Rob, das war schon das " + jsonReader.porno + "te mal!");
-            System.out.println("Antworte " + sender + " !fail: " + jsonReader.fail);
+            System.out.println(timeStamp + "Antworte " + sender + " !fail: " + (jsonReader.fail - 1) + " + 1");
         } else
         if(message.equalsIgnoreCase("!reis")) {
             jsonReader.reis++;
             sendMessage(channel, "Maschini hat schon " + jsonReader.reis + " Reiskörner gesammelt");
-            System.out.println("Antworte " + sender + " !reis: + " + jsonReader.reis);
+            System.out.println(timeStamp + "Antworte " + sender + " !reis: + " + (jsonReader.reis - 1) + " + 1");
         } else
         if(message.equalsIgnoreCase("!vac")) {
             jsonReader.vac++;
             sendMessage(channel, "ÜBERALL HACKER!! Das war schon der " + jsonReader.vac + "te!!!");
-            System.out.println("Antworte " + sender + " !vac: " + jsonReader.vac);
+            System.out.println(timeStamp + "Antworte " + sender + " !vac: " + (jsonReader.vac - 1) + " + 1");
         } else
         if(message.equalsIgnoreCase("!vegan")) {
             jsonReader.vegan++;
             sendMessage(channel, "Srude hat schon " + jsonReader.vegan + " Vegane Schnitzel gefressen");
-            System.out.println("Antworte " + sender + " !vegan: " + jsonReader.vegan);
+            System.out.println(timeStamp + "Antworte " + sender + " !vegan: " + (jsonReader.vegan - 1) + " + 1");
         }
-
-
     }
 }

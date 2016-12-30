@@ -1,18 +1,21 @@
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class jsonWriter {
     public static void main(String[] args) {
 
-        System.out.println("Save Command Data");
+        System.out.println("Save Data");
         JSONObject obj = new JSONObject();
         obj.put("vac", jsonReader.vac);
         obj.put("reis", jsonReader.reis);
         obj.put("vegan", jsonReader.vegan);
         obj.put("porno", jsonReader.porno);
         obj.put("fail", jsonReader.fail);
+
+
 
         try {
             FileWriter file = new FileWriter("counts.json");
@@ -22,6 +25,6 @@ public class jsonWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.print(obj + "");
+        System.out.print("Data: " + obj + "\nData Saved");
     }
 }
