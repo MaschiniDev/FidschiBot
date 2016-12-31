@@ -1,13 +1,13 @@
-import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class main {
+
+    static String timeStamp;
+
     public static void main(String[] args) throws Exception {
-
-        boolean loop = true;
-
-
         //#buffreader
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         //#readjson
@@ -26,6 +26,17 @@ public class main {
         bot.joinChannel(channel);
         System.out.println("------------------------------------------------------");
 
+        //timedate
+        Thread BGthread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    timeStamp = new SimpleDateFormat("[HH:mm] ").format(new Date());
+                }
+            }
+        });
+        BGthread.start();
+
         String command = br.readLine();
         if (command.contains("s"))
             jsonWriter.main(args);
@@ -34,12 +45,6 @@ public class main {
             System.out.println("Shutdown Bot");
             jsonWriter.main(args);
             System.exit(0);
-        }
-
-        //auto save
-        while (loop == true) {
-            TimeUnit.MINUTES.sleep(5);
-            jsonWriter.main(args);
         }
     }
 }

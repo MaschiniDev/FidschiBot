@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,8 +16,6 @@ public class jsonWriter {
         obj.put("porno", jsonReader.porno);
         obj.put("fail", jsonReader.fail);
 
-
-
         try {
             FileWriter file = new FileWriter("counts.json");
             file.write(obj.toJSONString());
@@ -27,4 +26,15 @@ public class jsonWriter {
         }
         System.out.print("Data: " + obj + "\nData Saved");
     }
+
+    //public static ArrayList<JSONObject> commandvalues (ArrayList<ArrayList<String>> values) throws Exception {
+    //    ArrayList<JSONObject> array = new ArrayList<>();
+    //    values.forEach(array.add(new JSONObject() {{
+    //        put("alias", alias);
+    //        put("command", command);
+    //        put("value", values);
+//
+//
+    //    }}));
+    //}
 }
