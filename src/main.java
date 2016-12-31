@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 public class main {
 
     static String timeStamp;
+    static String channel;
 
     public static void main(String[] args) throws Exception {
         //#buffreader
@@ -13,16 +14,11 @@ public class main {
         //#readjson
         jsonReader.main(args);
 
-        /*
-        *   Start PircBot
-        *   (c) Paul Mutton 2001-2013
-        *   #newbot
-        */
         FidschiBot bot = new FidschiBot();
         //join channel
         System.out.println("------------------------------------------------------");
         System.out.println("Channel?");
-        String channel = "#" + br.readLine();
+        channel = "#" + br.readLine();
         bot.joinChannel(channel);
         System.out.println("------------------------------------------------------");
 
@@ -37,6 +33,7 @@ public class main {
         });
         BGthread.start();
 
+        //save and exit
         String command = br.readLine();
         if (command.contains("s"))
             jsonWriter.main(args);
@@ -44,7 +41,7 @@ public class main {
             System.out.println("------------------------------------------------------");
             System.out.println("Shutdown Bot");
             jsonWriter.main(args);
-            System.exit(0);
+            System.exit(1);
         }
     }
 }

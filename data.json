@@ -1,0 +1,27 @@
+{
+  "Settings": {
+    "channel": "robzocker07"
+  },
+  "commands": [
+    {
+      "alias": "!ts",
+      "command": "{sender} -> legendarygamer.de",
+      "value": 0
+    },
+    {
+      "alias": "!vac",
+      "command": "ÜBERALL HACKER!! Das war schon der {value}te!!!",
+      "value": 9
+    },
+    {
+      "alias": "!reis",
+      "command": "Maschini hat schon {value} Reiskörner gesammelt",
+      "value": 92
+    },
+    {
+      "alias": "!porno",
+      "command": "Rob hat schon {value} mal seinen Pornoverlauf gezeigt!",
+      "value": 7
+    }
+  ]
+}

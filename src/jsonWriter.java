@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,6 +11,18 @@ public class jsonWriter {
 
         System.out.println("Save Data");
         JSONObject obj = new JSONObject();
+
+        Iterator i = jsonReader.valueL.iterator();
+        while (i.hasNext()) {
+            String alias;
+            String command;
+            Long value;
+
+        }
+
+
+
+
         obj.put("vac", jsonReader.vac);
         obj.put("reis", jsonReader.reis);
         obj.put("vegan", jsonReader.vegan);
