@@ -1,0 +1,29 @@
+{
+  "commands": [
+    {
+      "alias": "!ts",
+      "command": "{sender} -> legendarygamer.de",
+      "value": 0
+    },
+    {
+      "alias": "!vac",
+      "command": "ÜBERALL HACKER!! Das war schon der {value}te!!!",
+      "value": 9
+    },
+    {
+      "alias": "!reis",
+      "command": "Maschini hat schon {value} Reiskörner gesammelt",
+      "value": 94
+    },
+    {
+      "alias": "!porno",
+      "command": "Rob hat schon {value} mal seinen Pornoverlauf gezeigt!",
+      "value": 11
+    },
+    {
+      "alias": "!fail",
+      "command": "Nicht schon wieder Rob, das war schon das {value}te mal!",
+      "value": 11
+    }
+  ]
+}
