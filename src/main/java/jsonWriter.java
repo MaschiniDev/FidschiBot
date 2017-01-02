@@ -8,10 +8,9 @@ public class jsonWriter {
 
     public static void main(String[] args) {
         System.out.println("Save Data");
-
+        System.out.println("00%");
         JSONArray arr = new JSONArray();
         JSONObject commands = new JSONObject();
-
         for(int i = 0 ; i< main.aliasL.size() ; i++)
         {
             JSONObject obj = new JSONObject();
@@ -25,9 +24,9 @@ public class jsonWriter {
             obj.put("value", value);
 
             arr.add(obj);
-            System.out.println("");
         }
         commands.put("commands", arr);
+        System.out.println("50%");
 
         String objS = commands.toJSONString();
 
@@ -39,7 +38,8 @@ public class jsonWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //System.out.print("Data: " + obj + "\nData Saved");
+        System.out.println("100%");
+        System.out.println(main.line);
     }
 
 

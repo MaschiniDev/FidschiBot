@@ -34,6 +34,7 @@ public class jsonReader {
             System.out.println("aliase: " + main.aliasL);
             System.out.println("commands: " + main.commandL);
             System.out.println("values: " + main.valueL);
+            System.out.println(main.line);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
