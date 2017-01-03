@@ -9,15 +9,20 @@ import java.util.List;
 
 public class main {
 
+    //stuff
     static String timeStamp;
     static String channel;
     static String line = "------------------------------------------------------";
 
+    //command data
     static List<String> aliasL = new ArrayList<String>();
     static List<String> commandL = new ArrayList<String>();
-    static List<Long> valueL = new ArrayList<Long>();
+    static List<Integer> valueL = new ArrayList<Integer>();
+
+    //user data
+    static List<String> AllViewer = new ArrayList<String>();
     static List<String> LiveViewer = new ArrayList<String>();
-    static List<Integer> viewerPoints = new ArrayList<Integer>(); //<- Nicht vergessen
+    static List<Integer> viewerPointsAll = new ArrayList<Integer>();
 
     public static void main(String[] args) throws Exception {
         //text Strings
@@ -35,6 +40,7 @@ public class main {
         System.out.println(line);
         //#readjson
         jsonReader.main(args);
+        tBot.viewPoints(true);
 
         //timedate
         Thread BGthread = new Thread(new Runnable() {
@@ -71,6 +77,9 @@ public class main {
                 System.out.println(aliasL);
                 System.out.println(commandL);
                 System.out.println(valueL);
+                System.out.println(line);
+                System.out.println(AllViewer);
+                System.out.println(viewerPointsAll);
                 System.out.println(line);
                 jsonWriter.main(args);
                 log.close();

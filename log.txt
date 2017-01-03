@@ -1,5 +1,5 @@
 
-[18:20] [+] derfidschi guckt zu
-[18:21] [+] moobot guckt zu
-[18:21] [+] maschini guckt zu
-[18:21] [+] nightbot guckt zu
+[18:52] [+] derfidschi guckt zu
+[18:52] Added [derfidschi] (Existing User)
+[18:53] [+] maschini guckt zu
+[18:53] Added [derfidschi, maschini] (Existing User)

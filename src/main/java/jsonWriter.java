@@ -6,9 +6,26 @@ import org.json.simple.JSONObject;
 
 public class jsonWriter {
 
+    //save to file method
+    private static void save(String data, String file) {
+        try {
+            FileWriter fW = new FileWriter(file);
+            fW.write(data);
+            fW.flush();
+            fW.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    //save data method
     public static void main(String[] args) {
         System.out.println("Save Data");
         System.out.println("00%");
+
+        /*
+        Save DATA.JSON
+         */
         JSONArray arr = new JSONArray();
         JSONObject commands = new JSONObject();
         for(int i = 0 ; i< main.aliasL.size() ; i++)
@@ -17,7 +34,7 @@ public class jsonWriter {
 
             String alias = main.aliasL.get(i);
             String command = main.commandL.get(i);
-            Long value = main.valueL.get(i);
+            Integer value = main.valueL.get(i);
 
             obj.put("alias", alias);
             obj.put("command", command);
@@ -26,19 +43,32 @@ public class jsonWriter {
             arr.add(obj);
         }
         commands.put("commands", arr);
+        String commandData = commands.toJSONString();
+        save(commandData, "data.json");
         System.out.println("50%");
 
-        String objS = commands.toJSONString();
+        /*
+        Save USER.JSON
+         */
+        JSONArray arra = new JSONArray();
+        JSONObject user = new JSONObject();
+        for(int i = 0 ; i< main.LiveViewer.size() ; i++)
+        {
+            JSONObject obj = new JSONObject();
 
-        try {
-            FileWriter file = new FileWriter("data.json");
-            file.write(objS);
-            file.flush();
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            String User = main.LiveViewer.get(i);
+            Integer Points = main.viewerPointsAll.get(i);
+
+            obj.put("user", User);
+            obj.put("points", Points);
+
+            arra.add(obj);
         }
+        user.put("users", arra);
+        String userData = user.toJSONString();
+        save(userData, "user.json");
         System.out.println("100%");
+
         System.out.println(main.line);
     }
 
