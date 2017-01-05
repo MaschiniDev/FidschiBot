@@ -2,7 +2,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Locale;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -31,13 +30,13 @@ public class jsonReader {
                 main.aliasL.add(alias);
                 main.commandL.add(command);
                 main.valueL.add(value);
-
             }
             System.out.println("aliase: " + main.aliasL);
             System.out.println("commands: " + main.commandL);
             System.out.println("values: " + main.valueL);
             System.out.println(main.line);
         } catch (FileNotFoundException e) {
+            jsonWriter.main(args);
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,6 +65,7 @@ public class jsonReader {
             System.out.println("points: " + main.viewerPointsAll);
             System.out.println(main.line);
         } catch (FileNotFoundException e) {
+            jsonWriter.main(args);
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

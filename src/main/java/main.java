@@ -24,8 +24,15 @@ public class main {
     static List<String> LiveViewer = new ArrayList<String>();
     static List<Integer> viewerPointsAll = new ArrayList<Integer>();
 
+    //user blacklist -> Diese user werden nicht in die viewerliste hinzugefügt
+    static ArrayList<String> blacklist = new ArrayList<String>() {{
+        add("derfidschi");
+        add("nightbot");
+        add("moobot");
+    }};
+
+
     public static void main(String[] args) throws Exception {
-        //text Strings
         //#buff
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter log = new BufferedWriter(new FileWriter("log.txt"));
@@ -64,13 +71,15 @@ public class main {
         while (true) {
             String command = br.readLine();
             if (command.equalsIgnoreCase("save")) {
-                System.out.println(main.line);
-
+                jsonWriter.main(args);
+                System.out.println(line);
                 System.out.println(aliasL);
                 System.out.println(commandL);
                 System.out.println(valueL);
-
-                jsonWriter.main(args);
+                System.out.println(line);
+                System.out.println(AllViewer);
+                System.out.println(viewerPointsAll);
+                System.out.println(line);
             } else if (command.equalsIgnoreCase("exit")) {
                 System.out.println("Ready for Shutdown");
                 System.out.println(line);
@@ -87,6 +96,13 @@ public class main {
                 System.exit(0);
             } else if (command.equalsIgnoreCase("ga")) {
                 userActions.main(args);
+            } else if (command.equalsIgnoreCase("livelist")) {
+                System.out.println(LiveViewer);
+            } else if (command.equalsIgnoreCase("alllist")) {
+                System.out.println(AllViewer);
+                System.out.println(viewerPointsAll);
+            } else if (command.equalsIgnoreCase("remove")) {
+                System.out.println("Remove user: ");
             }
         }
     }

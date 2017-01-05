@@ -1,5 +1,6 @@
 
-[18:52] [+] derfidschi guckt zu
-[18:52] Added [derfidschi] (Existing User)
-[18:53] [+] maschini guckt zu
-[18:53] Added [derfidschi, maschini] (Existing User)
+[22:14] maschinilive: moin
+[22:14] [+] maschinilive guckt zu
+[22:14] Added maschinilive (New User)
+[22:14] maschini: moin
+[22:14] Added maschini (Existing User)

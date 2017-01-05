@@ -52,11 +52,11 @@ public class jsonWriter {
          */
         JSONArray arra = new JSONArray();
         JSONObject user = new JSONObject();
-        for(int i = 0 ; i< main.LiveViewer.size() ; i++)
+        for(int i = 0 ; i< main.AllViewer.size() ; i++)
         {
             JSONObject obj = new JSONObject();
 
-            String User = main.LiveViewer.get(i);
+            String User = main.AllViewer.get(i);
             Integer Points = main.viewerPointsAll.get(i);
 
             obj.put("user", User);
