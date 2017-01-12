@@ -33,26 +33,28 @@ public class tBot extends PircBot {
     }
 
     private void listMod(String user, boolean add) {
-        if (add) {
-            if (!main.blacklist.contains(user)) {
-                if (main.AllViewer.contains(user)) {
-                    //add user and points to Live
-                    if (!main.LiveViewer.contains(user)) {
-                        main.LiveViewer.add(user);
-                        write("Added " + user + " (Existing User)");
+        if (!main.viewerLive.contains(user)) {
+            if (add) {
+                //if (!main.blacklist.contains(user)) {
+                    if (main.viewerALL.contains(user)) {
+                        //add user and points to Live
+                        if (!main.viewerLive.contains(user)) {
+                            main.viewerLive.add(user);
+                            write("Added " + user + " (Existing User)");
+                        }
+                    } else {
+                        //add new user to Main list
+                        main.viewerALL.add(user);
+                        main.viewerPoints.add(1);
+                        //add new user to Live list
+                        main.viewerLive.add(user);
+                        write("Added " + user + " (New User)");
                     }
-                } else {
-                    //add new user to Main list
-                    main.AllViewer.add(user);
-                    main.viewerPointsAll.add(1);
-                    //add new user to Live list
-                    main.LiveViewer.add(user);
-                    write("Added " + user + " (New User)");
-                }
+                //}
+            } else if (!add) {
+                main.viewerLive.remove(user);
+                write("Removed " + user);
             }
-        } else if (!add) {
-            main.LiveViewer.remove(user);
-            write("Removed " + user);
         }
     }
 
@@ -64,12 +66,12 @@ public class tBot extends PircBot {
                         TimeUnit.MINUTES.sleep(5);
 
                         //loop to get all live user
-                        for (int i = 0; i< main.LiveViewer.size(); i++ ) {
-                            String user = main.LiveViewer.get(i); //live user from list
-                            int index = main.AllViewer.indexOf(user); //position of liveUser in main list
-                            int pointsU = main.viewerPointsAll.get(index); //get user points
+                        for (int i = 0; i< main.viewerLive.size(); i++ ) {
+                            String user = main.viewerLive.get(i); //live user from list
+                            int index = main.viewerALL.indexOf(user); //position of liveUser in main list
+                            int pointsU = main.viewerPoints.get(index); //get user points
                             pointsU++; //increase points
-                            main.viewerPointsAll.set(index, pointsU); //set new points value
+                            main.viewerPoints.set(index, pointsU); //set new points value
 
                             System.out.println(user + " + 1 Point");
                         }
@@ -81,13 +83,37 @@ public class tBot extends PircBot {
             }
         });
 
+        //#watchtime -> need new json system
+        //Thread watchT = new Thread(new Runnable() {
+        //    public void run() {
+        //        while (true) {
+        //            try {
+        //                TimeUnit.MINUTES.sleep(1);
+//
+        //                //loop to get all live user
+        //                for (int i = 0; i< main.viewerLive.size(); i++ ) {
+        //                    String user = main.viewerLive.get(i); //live user from list
+        //                    int index = main.viewerALL.indexOf(user); //position of liveUser in main list
+        //                    int pointsU = main.viewerPoints.get(index); //get user points
+        //                    pointsU++; //increase points
+        //                    main.viewerPoints.set(index, pointsU); //set new points value
+//
+        //                    System.out.println(user + " + 1 Point");
+        //                }
+        //                System.out.println("Increased Points");
+        //            } catch (InterruptedException e) {
+        //                e.printStackTrace();
+        //            }
+        //        }
+        //    }
+        //})
+
         if (start) {
             pointsT.start();
         }
-        else if (!start) {
-            pointsT.stop();
-        }
-
+        //else if (!start) {
+        //    pointsT.stop();
+        //}
     }
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
@@ -111,24 +137,22 @@ public class tBot extends PircBot {
             sendMessage(channel, antwort);
             write("Antworte " + sender + " -> " + message + " (" + value + ")");
         } else if (message.contains("!me")) {
-            if (main.AllViewer.contains(sender)) {
-                int index = main.AllViewer.indexOf(sender);
-                String pointsS = main.viewerPointsAll.get(index).toString();
-                sendMessage(channel, sender + ": " + pointsS);
+            if (main.viewerALL.contains(sender)) {
+                int index = main.viewerALL.indexOf(sender);
+                String pointsS = main.viewerPoints.get(index).toString();
+                int watchtime = main.viewerPoints.get(index);
+
+                sendMessage(channel, sender + " Viewerpoints: " + pointsS + ", Watchtime: " + (watchtime * 5) + " Minuten");
             }
         }
 
-        if (!main.AllViewer.contains(sender))
+        if (!main.viewerALL.contains(sender))
             write("[+] " + sender + " guckt zu");
             listMod(sender, true);
     }
     public void onJoin (String channel, String sender, String login, String hostname) {
-        if (!main.LiveViewer.contains(sender)) {
-            if (!main.blacklist.contains(sender)) {
-                write("[+] " + sender + " guckt zu");
-                listMod(sender, true);
-            }
-        }
+            write("[+] " + sender + " guckt zu");
+            listMod(sender, true);
     }
     public void onPart (String channel, String sender, String login, String hostname) {
         write("[-] " + sender + " guckt nicht mehr zu");

@@ -11,7 +11,7 @@ public class main {
 
     //stuff
     static String timeStamp;
-    static String channel;
+    static String channel = "robzocker07";
     static String line = "------------------------------------------------------";
 
     //command data
@@ -20,16 +20,12 @@ public class main {
     static List<Integer> valueL = new ArrayList<Integer>();
 
     //user data
-    static List<String> AllViewer = new ArrayList<String>();
-    static List<String> LiveViewer = new ArrayList<String>();
-    static List<Integer> viewerPointsAll = new ArrayList<Integer>();
+    static List<String> viewerALL = new ArrayList<String>();
+    static List<String> viewerLive = new ArrayList<String>();
+    static List<Integer> viewerPoints = new ArrayList<Integer>();
 
     //user blacklist -> Diese user werden nicht in die viewerliste hinzugefügt
-    static ArrayList<String> blacklist = new ArrayList<String>() {{
-        add("derfidschi");
-        add("nightbot");
-        add("moobot");
-    }};
+    //static ArrayList<String> blacklist = new ArrayList<String>();
 
 
     public static void main(String[] args) throws Exception {
@@ -37,19 +33,7 @@ public class main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter log = new BufferedWriter(new FileWriter("log.txt"));
 
-        //initiate Bot
-        tBot bot = new tBot();
-        //join channel
-        System.out.println(line);
-        System.out.println("Channel?");
-        channel = "#" + br.readLine();
-        bot.joinChannel(channel);
-        System.out.println(line);
-        //#readjson
-        jsonReader.main(args);
-        tBot.viewPoints(true);
-
-        //timedate
+        //Thread for Protocol Time
         Thread BGthread = new Thread(new Runnable() {
             public void run() {
                 while (true) {
@@ -58,6 +42,20 @@ public class main {
             }
         });
         BGthread.start();
+
+        //initiate Bot
+        tBot bot = new tBot();
+        //parameter for join channel
+        System.out.println(line);
+        System.out.println("Channel?");
+        channel = br.readLine();
+        System.out.println(line);
+        //#readjson
+        jsonReader.main(args);
+        tBot.viewPoints(true);
+        //join channel
+        bot.joinChannel("#" + channel);
+
 
         //new Timer(16000000, new ActionListener() {
         //    String tMes = "test";
@@ -77,8 +75,8 @@ public class main {
                 System.out.println(commandL);
                 System.out.println(valueL);
                 System.out.println(line);
-                System.out.println(AllViewer);
-                System.out.println(viewerPointsAll);
+                System.out.println(viewerALL);
+                System.out.println(viewerPoints);
                 System.out.println(line);
             } else if (command.equalsIgnoreCase("exit")) {
                 System.out.println("Ready for Shutdown");
@@ -87,8 +85,8 @@ public class main {
                 System.out.println(commandL);
                 System.out.println(valueL);
                 System.out.println(line);
-                System.out.println(AllViewer);
-                System.out.println(viewerPointsAll);
+                System.out.println(viewerALL);
+                System.out.println(viewerPoints);
                 System.out.println(line);
                 jsonWriter.main(args);
                 log.close();
@@ -97,10 +95,10 @@ public class main {
             } else if (command.equalsIgnoreCase("ga")) {
                 userActions.main(args);
             } else if (command.equalsIgnoreCase("livelist")) {
-                System.out.println(LiveViewer);
+                System.out.println(viewerLive);
             } else if (command.equalsIgnoreCase("alllist")) {
-                System.out.println(AllViewer);
-                System.out.println(viewerPointsAll);
+                System.out.println(viewerALL);
+                System.out.println(viewerPoints);
             } else if (command.equalsIgnoreCase("remove")) {
                 System.out.println("Remove user: ");
             }

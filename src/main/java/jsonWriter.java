@@ -20,9 +20,6 @@ public class jsonWriter {
 
     //save data method
     public static void main(String[] args) {
-        System.out.println("Save Data");
-        System.out.println("00%");
-
         /*
         Save DATA.JSON
          */
@@ -45,19 +42,18 @@ public class jsonWriter {
         commands.put("commands", arr);
         String commandData = commands.toJSONString();
         save(commandData, "data.json");
-        System.out.println("50%");
 
         /*
         Save USER.JSON
          */
         JSONArray arra = new JSONArray();
         JSONObject user = new JSONObject();
-        for(int i = 0 ; i< main.AllViewer.size() ; i++)
+        for(int i = 0 ; i< main.viewerALL.size() ; i++)
         {
             JSONObject obj = new JSONObject();
 
-            String User = main.AllViewer.get(i);
-            Integer Points = main.viewerPointsAll.get(i);
+            String User = main.viewerALL.get(i);
+            Integer Points = main.viewerPoints.get(i);
 
             obj.put("user", User);
             obj.put("points", Points);
