@@ -1,8 +1,11 @@
 import org.jibble.pircbot.PircBot;
+import sun.rmi.runtime.Log;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class tBot extends PircBot {
@@ -20,7 +23,9 @@ public class tBot extends PircBot {
     }
 
     //log method -> Protokolliert Chat in Console und log.txt
-    BufferedWriter log = new BufferedWriter(new FileWriter("log.txt"));
+    static String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    BufferedWriter log = new BufferedWriter(new FileWriter(date + ".txt"));
+
     public void write(String text) {
         System.out.println(main.timeStamp + text);
         try {
@@ -29,6 +34,16 @@ public class tBot extends PircBot {
             log.flush();
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        }
+    }
+
+    public void Logs(boolean close) {
+        if (close) {
+            try {
+                log.close();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
     }
 
@@ -75,7 +90,6 @@ public class tBot extends PircBot {
 
                             System.out.println(user + " + 1 Point");
                         }
-                        System.out.println("Increased Points");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -83,37 +97,33 @@ public class tBot extends PircBot {
             }
         });
 
-        //#watchtime -> need new json system
-        //Thread watchT = new Thread(new Runnable() {
-        //    public void run() {
-        //        while (true) {
-        //            try {
-        //                TimeUnit.MINUTES.sleep(1);
-//
-        //                //loop to get all live user
-        //                for (int i = 0; i< main.viewerLive.size(); i++ ) {
-        //                    String user = main.viewerLive.get(i); //live user from list
-        //                    int index = main.viewerALL.indexOf(user); //position of liveUser in main list
-        //                    int pointsU = main.viewerPoints.get(index); //get user points
-        //                    pointsU++; //increase points
-        //                    main.viewerPoints.set(index, pointsU); //set new points value
-//
-        //                    System.out.println(user + " + 1 Point");
-        //                }
-        //                System.out.println("Increased Points");
-        //            } catch (InterruptedException e) {
-        //                e.printStackTrace();
-        //            }
-        //        }
-        //    }
-        //})
+        Thread watchT = new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    try {
+                        TimeUnit.MINUTES.sleep(1);
+
+                        //loop to get all live user
+                        for (int i = 0; i< main.viewerLive.size(); i++ ) {
+                            String user = main.viewerLive.get(i); //live user from list
+                            int index = main.viewerALL.indexOf(user); //position of liveUser in main list
+                            int watch = main.watchtime.get(index); //get user watchtime
+                            watch++; //increase points
+                            main.watchtime.set(index, watch); //set new time value
+
+                            System.out.println(user + " + 1 Minute Watchtime");
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
         if (start) {
             pointsT.start();
+            watchT.start();
         }
-        //else if (!start) {
-        //    pointsT.stop();
-        //}
     }
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
@@ -139,10 +149,10 @@ public class tBot extends PircBot {
         } else if (message.contains("!me")) {
             if (main.viewerALL.contains(sender)) {
                 int index = main.viewerALL.indexOf(sender);
-                String pointsS = main.viewerPoints.get(index).toString();
-                int watchtime = main.viewerPoints.get(index);
+                int pointsS = main.viewerPoints.get(index);
+                int watchtime = main.watchtime.get(index);
 
-                sendMessage(channel, sender + " Viewerpoints: " + pointsS + ", Watchtime: " + (watchtime * 5) + " Minuten");
+                sendMessage(channel, sender + " Viewerpoints: " + pointsS + ", Watchtime: " + (watchtime) + " Minuten");
             }
         }
 
@@ -151,8 +161,8 @@ public class tBot extends PircBot {
             listMod(sender, true);
     }
     public void onJoin (String channel, String sender, String login, String hostname) {
-            write("[+] " + sender + " guckt zu");
-            listMod(sender, true);
+        write("[+] " + sender + " guckt zu");
+        listMod(sender, true);
     }
     public void onPart (String channel, String sender, String login, String hostname) {
         write("[-] " + sender + " guckt nicht mehr zu");

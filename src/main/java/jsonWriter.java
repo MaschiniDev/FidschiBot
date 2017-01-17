@@ -21,10 +21,17 @@ public class jsonWriter {
     //save data method
     public static void main(String[] args) {
         /*
-        Save DATA.JSON
+        Arrays, Objects
          */
-        JSONArray arr = new JSONArray();
-        JSONObject commands = new JSONObject();
+        JSONArray comArr = new JSONArray();
+        JSONArray ptsArr = new JSONArray();
+
+        JSONObject json = new JSONObject();
+        //JSONObject user = new JSONObject();
+        //JSONObject commands = new JSONObject();
+        /*
+        Save commands
+         */
         for(int i = 0 ; i< main.aliasL.size() ; i++)
         {
             JSONObject obj = new JSONObject();
@@ -37,34 +44,32 @@ public class jsonWriter {
             obj.put("command", command);
             obj.put("value", value);
 
-            arr.add(obj);
+            comArr.add(obj);
         }
-        commands.put("commands", arr);
-        String commandData = commands.toJSONString();
-        save(commandData, "data.json");
-
+        json.put("commands", comArr);
         /*
-        Save USER.JSON
+        Save points
          */
-        JSONArray arra = new JSONArray();
-        JSONObject user = new JSONObject();
         for(int i = 0 ; i< main.viewerALL.size() ; i++)
         {
             JSONObject obj = new JSONObject();
 
             String User = main.viewerALL.get(i);
             Integer Points = main.viewerPoints.get(i);
+            Integer Time = main.watchtime.get(i);
 
             obj.put("user", User);
             obj.put("points", Points);
+            obj.put("watchtime", (Time));
 
-            arra.add(obj);
+            ptsArr.add(obj);
         }
-        user.put("users", arra);
-        String userData = user.toJSONString();
-        save(userData, "user.json");
-        System.out.println("100%");
+        //user.put("points", ptsArr);
+        json.put("points", ptsArr);
+        String userData = json.toJSONString();
 
+        save(userData, main.channel + ".json");
+        System.out.println(userData);
         System.out.println(main.line);
     }
 

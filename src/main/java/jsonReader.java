@@ -49,12 +49,15 @@ public class jsonReader {
                 String user = vArr.get(i).toString();
                 main.viewerLive.add(user);
             }
-            //JSONArray mArr = (JSONArray) chatters.get("moderators");
-            //System.out.println("Mods: " + mArr);
-            //for (int i = 0; i < mArr.size(); i++) {
-            //    String blacklist = mArr.get(i).toString();
-            //    main.blacklist.add(blacklist);
-            //}
+            /*
+            Add Mods to Live (old: Create Blacklist)
+             */
+            JSONArray mArr = (JSONArray) chatters.get("moderators");
+            System.out.println("Mods: " + mArr);
+            for (int i = 0; i < mArr.size(); i++) {
+                String blacklist = mArr.get(i).toString();
+                main.viewerLive.add(blacklist);
+            }
         } catch (JsonException e) {
             e.printStackTrace();
         }
@@ -72,7 +75,6 @@ public class jsonReader {
                 }
             }
             System.out.println(main.channel);
-
 
             Object obj = parser.parse(new FileReader(file));
             JSONObject jsonObject = (JSONObject) obj;
@@ -99,13 +101,17 @@ public class jsonReader {
 
                     String user = (String) point.get("user");
                     Integer pointS = ((Long) point.get("points")).intValue();
+                    Integer watchT = ((Long) point.get("watchtime")).intValue();
 
                     main.viewerALL.add(user);
                     main.viewerPoints.add(pointS);
+                    main.watchtime.add(watchT);
 
                     System.out.println(user + " " + pointS);
                 }
             }
+            System.out.println(main.viewerPoints);
+            System.out.println(main.viewerALL);
         } catch (Exception e) {
             e.printStackTrace();
         }

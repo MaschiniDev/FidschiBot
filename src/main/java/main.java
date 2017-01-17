@@ -1,5 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.io.BufferedReader;
@@ -23,16 +21,13 @@ public class main {
     static List<String> viewerALL = new ArrayList<String>();
     static List<String> viewerLive = new ArrayList<String>();
     static List<Integer> viewerPoints = new ArrayList<Integer>();
+    static List<Integer> watchtime = new ArrayList<Integer>();
 
     //user blacklist -> Diese user werden nicht in die viewerliste hinzugefügt
     //static ArrayList<String> blacklist = new ArrayList<String>();
 
 
     public static void main(String[] args) throws Exception {
-        //#buff
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter log = new BufferedWriter(new FileWriter("log.txt"));
-
         //Thread for Protocol Time
         Thread BGthread = new Thread(new Runnable() {
             public void run() {
@@ -41,10 +36,14 @@ public class main {
                 }
             }
         });
-        BGthread.start();
+
+        //#buffreader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         //initiate Bot
         tBot bot = new tBot();
+        //start time Thread
+        BGthread.start();
         //parameter for join channel
         System.out.println(line);
         System.out.println("Channel?");
@@ -56,6 +55,7 @@ public class main {
         //join channel
         bot.joinChannel("#" + channel);
 
+        //#buffwriter
 
         //new Timer(16000000, new ActionListener() {
         //    String tMes = "test";
@@ -66,41 +66,35 @@ public class main {
         //}).start();
 
         //save and exit
+        String as = " \n ";
         while (true) {
             String command = br.readLine();
             if (command.equalsIgnoreCase("save")) {
                 jsonWriter.main(args);
-                System.out.println(line);
-                System.out.println(aliasL);
-                System.out.println(commandL);
-                System.out.println(valueL);
-                System.out.println(line);
-                System.out.println(viewerALL);
-                System.out.println(viewerPoints);
-                System.out.println(line);
+                System.out.println(aliasL + as + commandL + as + valueL + as + line + as + viewerALL + as + viewerPoints + as + line);
+
             } else if (command.equalsIgnoreCase("exit")) {
                 System.out.println("Ready for Shutdown");
-                System.out.println(line);
-                System.out.println(aliasL);
-                System.out.println(commandL);
-                System.out.println(valueL);
-                System.out.println(line);
-                System.out.println(viewerALL);
-                System.out.println(viewerPoints);
-                System.out.println(line);
                 jsonWriter.main(args);
-                log.close();
+                System.out.println(aliasL + as + commandL + as + valueL + as + line + as + viewerALL + as + viewerPoints + as + line);
                 System.out.println("See you next Time");
                 System.exit(0);
+
             } else if (command.equalsIgnoreCase("ga")) {
                 userActions.main(args);
+
             } else if (command.equalsIgnoreCase("livelist")) {
                 System.out.println(viewerLive);
+
             } else if (command.equalsIgnoreCase("alllist")) {
-                System.out.println(viewerALL);
-                System.out.println(viewerPoints);
+                System.out.println(viewerALL + as + viewerPoints);
+
             } else if (command.equalsIgnoreCase("remove")) {
                 System.out.println("Remove user: ");
+
+            } else if (command.equalsIgnoreCase("load")) {
+                jsonReader.main(args);
+
             }
         }
     }
