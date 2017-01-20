@@ -56,7 +56,7 @@ public class jsonReader {
             System.out.println("Mods: " + mArr);
             for (int i = 0; i < mArr.size(); i++) {
                 String blacklist = mArr.get(i).toString();
-                main.viewerLive.add(blacklist);
+                main.blacklist.add(blacklist);
             }
         } catch (JsonException e) {
             e.printStackTrace();

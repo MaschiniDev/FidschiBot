@@ -50,7 +50,7 @@ public class tBot extends PircBot {
     private void listMod(String user, boolean add) {
         if (!main.viewerLive.contains(user)) {
             if (add) {
-                //if (!main.blacklist.contains(user)) {
+                if (!main.blacklist.contains(user)) {
                     if (main.viewerALL.contains(user)) {
                         //add user and points to Live
                         if (!main.viewerLive.contains(user)) {
@@ -65,7 +65,7 @@ public class tBot extends PircBot {
                         main.viewerLive.add(user);
                         write("Added " + user + " (New User)");
                     }
-                //}
+                }
             } else if (!add) {
                 main.viewerLive.remove(user);
                 write("Removed " + user);
@@ -156,12 +156,16 @@ public class tBot extends PircBot {
             }
         }
 
-        if (!main.viewerALL.contains(sender))
-            write("[+] " + sender + " guckt zu");
-            listMod(sender, true);
+        if (!main.viewerALL.contains(sender)) {
+            if (!main.blacklist.contains(sender)) {
+                write("[+] " + sender + " guckt zu");
+                listMod(sender, true);
+            }
+        }
     }
     public void onJoin (String channel, String sender, String login, String hostname) {
         write("[+] " + sender + " guckt zu");
+        if (!main.blacklist.contains(sender))
         listMod(sender, true);
     }
     public void onPart (String channel, String sender, String login, String hostname) {

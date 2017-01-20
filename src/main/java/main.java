@@ -10,7 +10,7 @@ public class main {
     //stuff
     static String timeStamp;
     static String channel = "robzocker07";
-    static String line = "------------------------------------------------------";
+    static String line = "------------------------------------------------------ \n";
 
     //command data
     static List<String> aliasL = new ArrayList<String>();
@@ -24,7 +24,7 @@ public class main {
     static List<Integer> watchtime = new ArrayList<Integer>();
 
     //user blacklist -> Diese user werden nicht in die viewerliste hinzugefügt
-    //static ArrayList<String> blacklist = new ArrayList<String>();
+    static ArrayList<String> blacklist = new ArrayList<String>();
 
 
     public static void main(String[] args) throws Exception {
@@ -71,7 +71,7 @@ public class main {
             String command = br.readLine();
             if (command.equalsIgnoreCase("save")) {
                 jsonWriter.main(args);
-                System.out.println(aliasL + as + commandL + as + valueL + as + line + as + viewerALL + as + viewerPoints + as + line);
+                System.out.println(aliasL + as + commandL + as + valueL + as + line + viewerALL + as + viewerPoints + as + line + watchtime + line + "All User: " + viewerALL.size());
 
             } else if (command.equalsIgnoreCase("exit")) {
                 System.out.println("Ready for Shutdown");
@@ -85,6 +85,7 @@ public class main {
 
             } else if (command.equalsIgnoreCase("livelist")) {
                 System.out.println(viewerLive);
+                System.out.println(viewerLive.size());
 
             } else if (command.equalsIgnoreCase("alllist")) {
                 System.out.println(viewerALL + as + viewerPoints);

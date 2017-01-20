@@ -27,8 +27,7 @@ public class jsonWriter {
         JSONArray ptsArr = new JSONArray();
 
         JSONObject json = new JSONObject();
-        //JSONObject user = new JSONObject();
-        //JSONObject commands = new JSONObject();
+
         /*
         Save commands
          */
@@ -47,6 +46,7 @@ public class jsonWriter {
             comArr.add(obj);
         }
         json.put("commands", comArr);
+
         /*
         Save points
          */
@@ -72,7 +72,5 @@ public class jsonWriter {
         System.out.println(userData);
         System.out.println(main.line);
     }
-
-
 }
 
