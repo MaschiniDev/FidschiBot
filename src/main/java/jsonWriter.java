@@ -35,13 +35,9 @@ public class jsonWriter {
         {
             JSONObject obj = new JSONObject();
 
-            String alias = main.aliasL.get(i);
-            String command = main.commandL.get(i);
-            Integer value = main.valueL.get(i);
-
-            obj.put("alias", alias);
-            obj.put("command", command);
-            obj.put("value", value);
+            obj.put("alias", main.aliasL.get(i));
+            obj.put("command", main.commandL.get(i));
+            obj.put("value", main.valueL.get(i));
 
             comArr.add(obj);
         }
@@ -54,13 +50,9 @@ public class jsonWriter {
         {
             JSONObject obj = new JSONObject();
 
-            String User = main.viewerALL.get(i);
-            Integer Points = main.viewerPoints.get(i);
-            Integer Time = main.watchtime.get(i);
-
-            obj.put("user", User);
-            obj.put("points", Points);
-            obj.put("watchtime", (Time));
+            obj.put("user", main.viewerALL.get(i));
+            obj.put("points", main.viewerPoints.get(i));
+            obj.put("watchtime", main.watchtime.get(i));
 
             ptsArr.add(obj);
         }

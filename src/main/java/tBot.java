@@ -50,7 +50,7 @@ public class tBot extends PircBot {
     private void listMod(String user, boolean add) {
         if (!main.viewerLive.contains(user)) {
             if (add) {
-                if (!main.blacklist.contains(user)) {
+                //if (!main.blacklist.contains(user)) {
                     if (main.viewerALL.contains(user)) {
                         //add user and points to Live
                         if (!main.viewerLive.contains(user)) {
@@ -65,7 +65,7 @@ public class tBot extends PircBot {
                         main.viewerLive.add(user);
                         write("Added " + user + " (New User)");
                     }
-                }
+                //}
             } else if (!add) {
                 main.viewerLive.remove(user);
                 write("Removed " + user);
@@ -111,18 +111,20 @@ public class tBot extends PircBot {
                             watch++; //increase points
                             main.watchtime.set(index, watch); //set new time value
 
-                            System.out.println(user + " + 1 Minute Watchtime");
+                            System.out.println(user + " + 1 Minute");
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    } catch (ArrayIndexOutOfBoundsException be) {
+                        System.out.println(be);
                     }
                 }
             }
         });
 
         if (start) {
-            pointsT.start();
-            watchT.start();
+            //pointsT.start();
+            //watchT.start();
         }
     }
 
@@ -136,7 +138,7 @@ public class tBot extends PircBot {
             String response = main.commandL.get(index);
             //Value Increase
             int value = main.valueL.get(index);
-            if (response.toLowerCase().indexOf("{value}") != -1) {
+            if (response.toLowerCase().equals("{value}")) {
                 value++;
                 main.valueL.set(index, value);}
             //Insert Variables
@@ -152,20 +154,13 @@ public class tBot extends PircBot {
                 int pointsS = main.viewerPoints.get(index);
                 int watchtime = main.watchtime.get(index);
 
-                sendMessage(channel, sender + " Viewerpoints: " + pointsS + ", Watchtime: " + (watchtime) + " Minuten");
-            }
-        }
-
-        if (!main.viewerALL.contains(sender)) {
-            if (!main.blacklist.contains(sender)) {
-                write("[+] " + sender + " guckt zu");
-                listMod(sender, true);
+                sendMessage(channel, sender + " Viewerpoints: " + pointsS + ", Watchtime: " + watchtime + " Minuten");
             }
         }
     }
     public void onJoin (String channel, String sender, String login, String hostname) {
         write("[+] " + sender + " guckt zu");
-        if (!main.blacklist.contains(sender))
+        //if (!main.blacklist.contains(sender))
         listMod(sender, true);
     }
     public void onPart (String channel, String sender, String login, String hostname) {

@@ -12,6 +12,12 @@ public class main {
     static String channel = "robzocker07";
     static String line = "------------------------------------------------------ \n";
 
+    /*
+    //new Object lists
+    static ArrayList<Object> commandList = new ArrayList<Object>();
+    static ArrayList<Object> userList = new ArrayList<Object>();
+    */
+
     //command data
     static List<String> aliasL = new ArrayList<String>();
     static List<String> commandL = new ArrayList<String>();
@@ -24,7 +30,7 @@ public class main {
     static List<Integer> watchtime = new ArrayList<Integer>();
 
     //user blacklist -> Diese user werden nicht in die viewerliste hinzugefügt
-    static ArrayList<String> blacklist = new ArrayList<String>();
+    //static ArrayList<String> blacklist = new ArrayList<String>();
 
 
     public static void main(String[] args) throws Exception {
