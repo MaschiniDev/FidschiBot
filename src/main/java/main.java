@@ -11,6 +11,7 @@ public class main {
     static String timeStamp;
     static String channel = "robzocker07";
     static String line = "------------------------------------------------------ \n";
+    static Boolean write = true;
 
     /*
     //new Object lists
@@ -75,34 +76,59 @@ public class main {
         String as = " \n ";
         while (true) {
             String command = br.readLine();
-            if (command.equalsIgnoreCase("save")) {
+            String[] comWords = command.split(" ");
+
+            if (comWords[0].equalsIgnoreCase("save")) {
                 jsonWriter.main(args);
                 System.out.println(aliasL + as + commandL + as + valueL + as + line + viewerALL + as + viewerPoints + as + line + watchtime + line + "All User: " + viewerALL.size());
-
-            } else if (command.equalsIgnoreCase("exit")) {
+            } else if (comWords[0].equalsIgnoreCase("load")) {
+                jsonReader.main(args);
+                System.out.println(aliasL + as + commandL + as + valueL + as + line + viewerALL + as + viewerPoints + as + line + watchtime + line + "All User: " + viewerALL.size());
+            } else if (comWords[0].equalsIgnoreCase("help")) {
+                System.out.println("Possible Commands: save, load, help, exit, list, add, remove");
+            } else if (comWords[0].equalsIgnoreCase("exit")) {
                 System.out.println("Ready for Shutdown");
                 jsonWriter.main(args);
                 System.out.println(aliasL + as + commandL + as + valueL + as + line + as + viewerALL + as + viewerPoints + as + line);
                 System.out.println("See you next Time");
                 System.exit(0);
+            } else if (comWords[0].equalsIgnoreCase("list")) {
+                if (comWords[1].equalsIgnoreCase("live")) {
+                    System.out.println("Viewercount " + viewerLive.size());
+                    System.out.println("Live viewer: " + viewerLive);
+                } else if (comWords[1].equalsIgnoreCase("all")) {
+                    for (int i = 0 ; i< main.viewerALL.size() ; i++) {
+                        System.out.println(viewerALL.get(i) + ", " + viewerPoints.get(i));
+                    }
+                } else if (comWords[1].equalsIgnoreCase("alias")) {
+                    System.out.println(aliasL);
+                }
 
-            } else if (command.equalsIgnoreCase("ga")) {
-                userActions.main(args);
+            } else if (comWords[0].equalsIgnoreCase("add")) {
+                if (comWords[1].equalsIgnoreCase("com") || comWords[1].equalsIgnoreCase("command")) {
+                    aliasL.add(comWords[2]);
+                    valueL.add(Integer.parseInt(comWords[3]));
+                    commandL.add(comWords[4]);
 
-            } else if (command.equalsIgnoreCase("livelist")) {
-                System.out.println(viewerLive);
-                System.out.println(viewerLive.size());
+                    System.out.println(comWords[2] + " " + comWords[3] + " " + comWords[4]);
+                } else if (comWords[1].equalsIgnoreCase("help")) {
+                    System.out.println("Write: com !testcommand \"customvalue, wenn keins benötigt schreibe 0\" \"Mustertext\"");
+                }
+            } else if (comWords[0].equalsIgnoreCase("remove")) {
+                    System.out.println("Remove");
+                    int index = aliasL.indexOf(comWords[1]);
 
-            } else if (command.equalsIgnoreCase("alllist")) {
-                System.out.println(viewerALL + as + viewerPoints);
-
-            } else if (command.equalsIgnoreCase("remove")) {
-                System.out.println("Remove user: ");
-
-            } else if (command.equalsIgnoreCase("load")) {
-                jsonReader.main(args);
-
+                    if (index == -1)
+                        System.out.println("-1");
+                    else {
+                        System.out.println(aliasL);
+                        aliasL.remove(index);
+                        valueL.remove(index);
+                        commandL.remove(index);
+                        System.out.println(aliasL);
+                    }
             }
+            write = true;
         }
     }
 }

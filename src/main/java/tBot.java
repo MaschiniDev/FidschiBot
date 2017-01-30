@@ -1,5 +1,4 @@
 import org.jibble.pircbot.PircBot;
-import sun.rmi.runtime.Log;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,7 +8,6 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class tBot extends PircBot {
-    static String lastMes;
     /*
     *   PircBot
     *   (c) Paul Mutton 2001-2013
@@ -23,10 +21,11 @@ public class tBot extends PircBot {
     }
 
     //log method -> Protokolliert Chat in Console und log.txt
-    static String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    static String date = new SimpleDateFormat("yyyy-MM-dd [HH:mm]").format(new Date());
     BufferedWriter log = new BufferedWriter(new FileWriter(date + ".txt"));
 
     public void write(String text) {
+        if (main.write)
         System.out.println(main.timeStamp + text);
         try {
             log.newLine();
@@ -130,7 +129,7 @@ public class tBot extends PircBot {
 
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         write(sender + ": " + message);
-        lastMes = message;
+        String[] mesArr = message.split(" ");
 
         if(main.aliasL.contains(message)) {
             //Get Position of Command -> Set Index
@@ -138,7 +137,7 @@ public class tBot extends PircBot {
             String response = main.commandL.get(index);
             //Value Increase
             int value = main.valueL.get(index);
-            if (response.toLowerCase().equals("{value}")) {
+            if (response.contains("{value}")) {
                 value++;
                 main.valueL.set(index, value);}
             //Insert Variables
@@ -148,19 +147,10 @@ public class tBot extends PircBot {
             //Send Message + Protocoll
             sendMessage(channel, antwort);
             write("Antworte " + sender + " -> " + message + " (" + value + ")");
-        } else if (message.contains("!me")) {
-            if (main.viewerALL.contains(sender)) {
-                int index = main.viewerALL.indexOf(sender);
-                int pointsS = main.viewerPoints.get(index);
-                int watchtime = main.watchtime.get(index);
-
-                sendMessage(channel, sender + " Viewerpoints: " + pointsS + ", Watchtime: " + watchtime + " Minuten");
-            }
         }
     }
     public void onJoin (String channel, String sender, String login, String hostname) {
         write("[+] " + sender + " guckt zu");
-        //if (!main.blacklist.contains(sender))
         listMod(sender, true);
     }
     public void onPart (String channel, String sender, String login, String hostname) {

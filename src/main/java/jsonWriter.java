@@ -52,7 +52,7 @@ public class jsonWriter {
 
             obj.put("user", main.viewerALL.get(i));
             obj.put("points", main.viewerPoints.get(i));
-            obj.put("watchtime", main.watchtime.get(i));
+            obj.put("watchtime", /*main.watchtime.get(i)*/ 0);
 
             ptsArr.add(obj);
         }

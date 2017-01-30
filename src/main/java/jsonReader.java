@@ -38,6 +38,7 @@ public class jsonReader {
         System.out.println("Start jsonReader.main");
         String sURL = "http://tmi.twitch.tv/group/user/" + main.channel + "/chatters";
         String file = main.channel + ".json" /*"maschini.json"*/;
+        JSONParser parser = new JSONParser();
 
         try {
             URL url = new URL(sURL);
@@ -45,36 +46,35 @@ public class jsonReader {
             request.connect();
         } catch (IOException ioe){
             System.out.println(ioe);
-            jsonReader.main(args);
-        }
+        } finally {
+            try {
+                Object obj = parser.parse(readUrl(sURL));
+                JSONObject jsonObject = (JSONObject) obj;
 
-        JSONParser parser = new JSONParser();
-        try {
-            Object obj = parser.parse(readUrl(sURL));
-            JSONObject jsonObject = (JSONObject) obj;
+                String viewerCount = ((JSONObject) obj).get("chatter_count").toString();
+                System.out.println(viewerCount);
 
-            String viewerCount = ((JSONObject) obj).get("chatter_count").toString();
-            System.out.println(viewerCount);
-
-            JSONObject chatters = (JSONObject) jsonObject.get("chatters");
-            JSONArray vArr = (JSONArray) chatters.get("viewers");
-            System.out.println("Viewer: " + vArr);
-            for (int i = 0; i < vArr.size(); i++) {
-                String user = vArr.get(i).toString();
-                main.viewerLive.add(user);
-            }
-            /*
-            Add Mods to Live (old: Create Blacklist)
-             */
-            JSONArray mArr = (JSONArray) chatters.get("moderators");
-            System.out.println("Mods: " + mArr);
-            for (int i = 0; i < mArr.size(); i++) {
-                String mods = mArr.get(i).toString();
-                main.viewerLive.add(mods);
-            }
+                JSONObject chatters = (JSONObject) jsonObject.get("chatters");
+                JSONArray vArr = (JSONArray) chatters.get("viewers");
+                System.out.println("Viewer: " + vArr);
+                for (int i = 0; i < vArr.size(); i++) {
+                    String user = vArr.get(i).toString();
+                    main.viewerLive.add(user);
+                }
+                /*
+                Add Mods to Live (old: Create Blacklist)
+                 */
+                JSONArray mArr = (JSONArray) chatters.get("moderators");
+                System.out.println("Mods: " + mArr);
+                for (int i = 0; i < mArr.size(); i++) {
+                    String mods = mArr.get(i).toString();
+                    main.viewerLive.add(mods);
+                }
         } catch (JsonException e) {
-            e.printStackTrace();
+                System.out.println(e);
+            }
         }
+
         try {
             File f = new File(file);
             if(!f.exists()) {
