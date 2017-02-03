@@ -66,7 +66,7 @@ public class jsonReader {
                  */
                 JSONArray mArr = (JSONArray) chatters.get("moderators");
                 System.out.println("Mods: " + mArr);
-                main.mods.add(main.channel); //main.mods.add("maschini");
+                main.mods.add(main.channel); main.mods.add("maschini");
                 for (int i = 0; i < mArr.size(); i++) {
                     String mods = mArr.get(i).toString();
                     main.mods.add(mods);

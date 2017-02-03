@@ -17,7 +17,7 @@ public class tBot extends PircBot {
         this.connect("irc.chat.twitch.tv", 6667, "oauth:wina1jfkwzqzoraqb0vqy7jes8m93l");
         this.sendRawLine("CAP REQ :twitch.tv/membership");
 
-        this.setVerbose(true); //debug
+        this.setVerbose(false); //debug
     }
 
     //log method -> Protokolliert Chat in Console und log.txt
