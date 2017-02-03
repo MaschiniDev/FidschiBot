@@ -17,12 +17,12 @@ public class tBot extends PircBot {
         this.connect("irc.chat.twitch.tv", 6667, "oauth:wina1jfkwzqzoraqb0vqy7jes8m93l");
         this.sendRawLine("CAP REQ :twitch.tv/membership");
 
-        this.setVerbose(false); //debug
+        this.setVerbose(true); //debug
     }
 
     //log method -> Protokolliert Chat in Console und log.txt
-    static String date = new SimpleDateFormat("yyyy-MM-dd [HH:mm]").format(new Date());
-    BufferedWriter log = new BufferedWriter(new FileWriter(date + ".txt"));
+    static String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    BufferedWriter log = new BufferedWriter(new FileWriter("log/" + date + ".txt"));
 
     public void write(String text) {
         if (main.write)
@@ -33,16 +33,6 @@ public class tBot extends PircBot {
             log.flush();
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        }
-    }
-
-    public void Logs(boolean close) {
-        if (close) {
-            try {
-                log.close();
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
         }
     }
 
@@ -127,11 +117,75 @@ public class tBot extends PircBot {
         }
     }
 
+    public String adminCommands(String input, String user) {
+        String as = "\n";
+        String[] comWords = input.split(" ");
+        String response = "";
+
+        if (main.mods.contains(user)) {
+            if (comWords[0].equalsIgnoreCase("!help")) {
+                String help = "Possible Commands: save, load, help, exit, list, add, remove";
+                write(help);
+            } else if (comWords[0].equalsIgnoreCase("!list")) {
+                if (comWords[1].equalsIgnoreCase("live")) {
+                    String live = "Viewercount " + main.viewerLive.size() + as + "Live viewer: " + main.viewerLive;
+                    write(live); sendAction(main.channel, live);
+                } else if (comWords[1].equalsIgnoreCase("all")) {
+                    write(main.viewerALL.toString());
+                } else if (comWords[1].equalsIgnoreCase("commands")) {
+                    response = main.aliasL.toString();
+                }
+
+            } else if (comWords[0].equalsIgnoreCase("!add")) {
+                //Command call (!example)
+                main.aliasL.add(comWords[1]);
+                //Command value for Counts, etc
+                main.valueL.add(0);
+                //Command Text -> Delete from Linestring all but the Text answer
+                String comText = input;
+                comText = comText.replace(comWords[0], "");
+                comText = comText.replace(comWords[1], "");
+                comText = comText.replace("  ", "");
+                main.commandL.add(comText);
+
+                String add = comWords[1] + " 0 :" + comText;
+                write(add); sendAction(main.channel, add);
+
+            } else if (comWords[0].equalsIgnoreCase("!remove")) {
+                int index = main.aliasL.indexOf(comWords[1]);
+
+                if (index == -1)
+                    response = "This command dont Exist";
+                else {
+                    System.out.println(main.aliasL);
+                    main.aliasL.remove(index);
+                    main.valueL.remove(index);
+                    main.commandL.remove(index);
+                    System.out.println(main.aliasL);
+
+                    response = "Removed Command " + comWords[1];
+                }
+            } else if (comWords[0].equalsIgnoreCase("!edit")) {
+                int index = main.aliasL.indexOf(comWords[1]);
+                int newVal = Integer.parseInt(comWords[2]);
+
+                if (!input.contains("+"))
+                    main.valueL.add(index, newVal);
+                else if (input.contains("+")) {
+                    main.valueL.add(index, main.valueL.get(index) + newVal);
+                }
+            }
+        }
+
+        main.write = true;
+        return response;
+    }
+    
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         write(sender + ": " + message);
         String[] mesArr = message.split(" ");
 
-        if(main.aliasL.contains(message)) {
+        if(mesArr[0].equalsIgnoreCase(message)) {
             //Get Position of Command -> Set Index
             int index = main.aliasL.indexOf(message);
             String response = main.commandL.get(index);
@@ -147,6 +201,8 @@ public class tBot extends PircBot {
             //Send Message + Protocoll
             sendMessage(channel, antwort);
             write("Antworte " + sender + " -> " + message + " (" + value + ")");
+        } else {
+            sendMessage(channel, adminCommands(message, sender));
         }
     }
     public void onJoin (String channel, String sender, String login, String hostname) {

@@ -62,13 +62,14 @@ public class jsonReader {
                     main.viewerLive.add(user);
                 }
                 /*
-                Add Mods to Live (old: Create Blacklist)
+                Add Mods to List (old: Create Blacklist)
                  */
                 JSONArray mArr = (JSONArray) chatters.get("moderators");
                 System.out.println("Mods: " + mArr);
+                main.mods.add(main.channel); //main.mods.add("maschini");
                 for (int i = 0; i < mArr.size(); i++) {
                     String mods = mArr.get(i).toString();
-                    main.viewerLive.add(mods);
+                    main.mods.add(mods);
                 }
         } catch (JsonException e) {
                 System.out.println(e);
