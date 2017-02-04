@@ -28,8 +28,7 @@ public class tBot extends PircBot {
         if (main.write)
         System.out.println(main.timeStamp + text);
         try {
-            log.newLine();
-            log.write(main.timeStamp + text);
+            log.write(main.timeStamp + text + "\n");
             log.flush();
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -61,7 +60,6 @@ public class tBot extends PircBot {
             }
         }
     }
-
     public static void viewPoints(boolean start) {
         Thread pointsT = new Thread(new Runnable() {
             public void run() {
@@ -112,8 +110,8 @@ public class tBot extends PircBot {
         });
 
         if (start) {
-            //pointsT.start();
-            //watchT.start();
+            pointsT.start();
+            watchT.start();
         }
     }
 
@@ -138,7 +136,7 @@ public class tBot extends PircBot {
 
             } else if (comWords[0].equalsIgnoreCase("!add")) {
                 //Command call (!example)
-                main.aliasL.add(comWords[1]);
+                main.aliasL.add(comWords[1].toLowerCase());
                 //Command value for Counts, etc
                 main.valueL.add(0);
                 //Command Text -> Delete from Linestring all but the Text answer
@@ -149,7 +147,7 @@ public class tBot extends PircBot {
                 main.commandL.add(comText);
 
                 String add = comWords[1] + " 0 :" + comText;
-                write(add); sendAction(main.channel, add);
+                write(add); sendAction("+" + main.channel, add);
 
             } else if (comWords[0].equalsIgnoreCase("!remove")) {
                 int index = main.aliasL.indexOf(comWords[1]);
@@ -183,6 +181,7 @@ public class tBot extends PircBot {
     
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         write(sender + ": " + message);
+        message = message.toLowerCase();
         String[] mesArr = message.split(" ");
 
         if(mesArr[0].equalsIgnoreCase(message)) {
@@ -205,6 +204,7 @@ public class tBot extends PircBot {
             sendMessage(channel, adminCommands(message, sender));
         }
     }
+
     public void onJoin (String channel, String sender, String login, String hostname) {
         write("[+] " + sender + " guckt zu");
         listMod(sender, true);

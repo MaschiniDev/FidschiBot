@@ -56,12 +56,10 @@ public class main {
         channel = br.readLine();
         System.out.println(line);
         //#readjson
-        jsonReader.main(args);
+        json.Reader(); //jsonReader.main(args);
         tBot.viewPoints(true);
         //join channel
         bot.joinChannel("#" + channel);
-
-        //#buffwriter
 
         //new Timer(16000000, new ActionListener() {
         //    String tMes = "test";
@@ -81,19 +79,21 @@ public class main {
             }
             String[] comWords = lnInput.split(" ");
 
-            if (comWords[0].equalsIgnoreCase("save")) {
-                jsonWriter.main(args);
+            if (comWords[0].equalsIgnoreCase("list")) {
+                System.out.println("Live: " + viewerLive.toString() + as + "All: " + viewerALL.toString());
+            } else if (comWords[0].equalsIgnoreCase("save")) {
+                json.Writer(); //jsonWriter.main(args);
                 System.out.println(aliasL + as + commandL + as + valueL + as + line + viewerALL + as + viewerPoints + as + line + watchtime + line + "All User: " + viewerALL.size());
             } else if (comWords[0].equalsIgnoreCase("load")) {
                 try {
-                    jsonReader.main(args);
+                    json.Reader(); //jsonReader.main(args);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println(aliasL + as + commandL + as + valueL + as + line + viewerALL + as + viewerPoints + as + line + watchtime + line + "All User: " + viewerALL.size());
             } else if (comWords[0].equalsIgnoreCase("exit")) {
                 System.out.println("Ready for Shutdown");
-                jsonWriter.main(args);
+                json.Writer(); //jsonWriter.main(args);
                 System.out.println(aliasL + as + commandL + as + valueL + as + line + as + viewerALL + as + viewerPoints + as + line + as + "See you next Time");
                 System.exit(0);
             }

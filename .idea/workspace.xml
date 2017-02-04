@@ -7,8 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e22a2595-3af7-42e3-8565-805b59f0c160" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/json.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/jsonReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/jsonWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/userActions.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/jsonReader.java" afterPath="$PROJECT_DIR$/src/main/java/jsonReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main.java" afterPath="$PROJECT_DIR$/src/main/java/main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tBot.java" afterPath="$PROJECT_DIR$/src/main/java/tBot.java" />
     </list>
@@ -38,57 +41,31 @@
     <splitter split-orientation="horizontal" split-proportion="0.5723096">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="tBot.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="tBot.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/tBot.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="26">
-                  <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+                <state relative-caret-position="312">
+                  <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
                   <folding>
-                    <element signature="imports" expanded="true" />
+                    <element signature="method#write#0;class#tBot#0" expanded="false" />
+                    <element signature="method#listMod#0;class#tBot#0" expanded="false" />
                     <element signature="method#viewPoints#0;class#tBot#0" expanded="false" />
+                    <element signature="method#adminCommands#0;class#tBot#0" expanded="false" />
+                    <element signature="method#onJoin#0;class#tBot#0" expanded="false" />
+                    <element signature="method#onPart#0;class#tBot#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1872">
-                  <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+                <state relative-caret-position="815">
+                  <caret line="66" column="51" lean-forward="true" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="jsonWriter.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/jsonWriter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="754">
-                  <caret line="33" column="51" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="51" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="jsonReader.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/jsonReader.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1274">
-                  <caret line="57" column="50" lean-forward="false" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="userActions.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/userActions.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
-                  <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -97,11 +74,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="maschini.json" pinned="false" current-in-tab="false">
+          <file leaf-file-name="maschini.json" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/maschini.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
-                  <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+                  <caret line="0" column="693" lean-forward="false" selection-start-line="0" selection-start-column="693" selection-end-line="0" selection-end-column="693" />
                   <folding />
                 </state>
               </provider>
@@ -111,17 +88,17 @@
             <entry file="file://$PROJECT_DIR$/robzocker07.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
-                  <caret line="0" column="568" lean-forward="false" selection-start-line="0" selection-start-column="568" selection-end-line="0" selection-end-column="568" />
+                  <caret line="0" column="478" lean-forward="false" selection-start-line="0" selection-start-column="478" selection-end-line="0" selection-end-column="478" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="2017-02-02.txt" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/log/2017-02-02.txt">
+          <file leaf-file-name="esl_99damage.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/esl_99damage.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -185,17 +162,18 @@
         <option value="$PROJECT_DIR$/src/main/java/changer.java" />
         <option value="$PROJECT_DIR$/src/main/java/test.java" />
         <option value="$PROJECT_DIR$/null.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/userActions.java" />
         <option value="$PROJECT_DIR$/2017-01-17.txt" />
-        <option value="$PROJECT_DIR$/maschini.json" />
         <option value="$PROJECT_DIR$/2017-01-23.txt" />
         <option value="$PROJECT_DIR$/2017-01-28.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/jsonWriter.java" />
         <option value="$PROJECT_DIR$/robzocker07.json" />
         <option value="$PROJECT_DIR$/log/2017-02-02.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/tBot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jsonWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/jsonReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/userActions.java" />
+        <option value="$PROJECT_DIR$/maschini.json" />
+        <option value="$PROJECT_DIR$/src/main/java/tBot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/json.java" />
       </list>
     </option>
   </component>
@@ -415,8 +393,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -439,6 +415,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FidschiBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FidschiBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FidschiBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FidschiBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FidschiBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FidschiBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="log" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -446,6 +476,8 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -453,7 +485,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2045977" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
@@ -1058,7 +1090,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486159874442</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="little command fixes&#10;">
+      <created>1486160697893</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1486160697893</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1103,7 +1142,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822084" sideWeight="0.49453124" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14739583" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="JSON Formatter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1186,12 +1225,13 @@
     <MESSAGE value="irgendwas stimmt mit dem Json System nicht" />
     <MESSAGE value="new command line script" />
     <MESSAGE value="giga command update&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="giga command update&#10;" />
+    <MESSAGE value="little command fixes&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="little command fixes&#10;" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.71842104" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="244" />
+      <option name="time" value="271" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1200,6 +1240,7 @@
         <watch expression="request" />
         <watch expression="main.viewerALL" language="JAVA" />
         <watch expression="main.viewerLive" language="JAVA" />
+        <watch expression="json" />
       </configuration>
     </watches-manager>
   </component>
@@ -1208,29 +1249,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/Runnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1144">
-          <caret line="67" column="25" lean-forward="false" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/io/BufferedWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="65" column="13" lean-forward="false" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/counts.json" />
     <entry file="file://$PROJECT_DIR$/pom.xml" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="1104" column="19" lean-forward="false" selection-start-line="1104" selection-start-column="19" selection-end-line="1104" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/System.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -1308,13 +1327,7 @@
     <entry file="file://$PROJECT_DIR$/robzocker.json" />
     <entry file="file://$PROJECT_DIR$/robzocker08.json" />
     <entry file="file://$PROJECT_DIR$/src/main/java/changer.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test.java" />
     <entry file="file://$PROJECT_DIR$/user.json" />
     <entry file="file://$PROJECT_DIR$/data.json" />
     <entry file="file://$PROJECT_DIR$/jsonBackup/user.json" />
@@ -1339,13 +1352,6 @@
     <entry file="file://$PROJECT_DIR$/log.txt" />
     <entry file="file://$PROJECT_DIR$/2017-01-23.txt" />
     <entry file="file://$PROJECT_DIR$/eleaguetv.json" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/io/FileInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="218" column="23" lean-forward="false" selection-start-line="218" selection-start-column="23" selection-end-line="218" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/NumberFormatException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="962">
@@ -1368,22 +1374,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/2017-01-28.txt" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/userActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maschini.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/pircbot.jar!/org/jibble/pircbot/InputThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
@@ -1391,26 +1381,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robzocker07.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="568" lean-forward="false" selection-start-line="0" selection-start-column="568" selection-end-line="0" selection-end-column="568" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/log/2017-02-02.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/pircbot.jar!/org/jibble/pircbot/PircBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="427" column="0" lean-forward="false" selection-start-line="427" selection-start-column="0" selection-end-line="427" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1421,39 +1395,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jsonWriter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/jsonReader.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/jsonWriter.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/io/FileInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="33" column="51" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="51" />
+        <state relative-caret-position="434">
+          <caret line="218" column="23" lean-forward="false" selection-start-line="218" selection-start-column="23" selection-end-line="218" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robzocker07.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="478" lean-forward="false" selection-start-line="0" selection-start-column="478" selection-end-line="0" selection-end-column="478" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jsonReader.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1274">
-          <caret line="57" column="50" lean-forward="false" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
+        <state relative-caret-position="471">
+          <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/esl_99damage.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/userActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1872">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+        <state relative-caret-position="338">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/maschini.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="693" lean-forward="false" selection-start-line="0" selection-start-column="693" selection-end-line="0" selection-end-column="693" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/pircbot.jar!/org/jibble/pircbot/PircBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59254">
+          <caret line="2334" column="22" lean-forward="false" selection-start-line="2334" selection-start-column="22" selection-end-line="2334" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#96567#96568#0" expanded="true" />
+            <element signature="e#96601#96602#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/2017-02-04.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+        <state relative-caret-position="312">
+          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding>
+            <element signature="method#write#0;class#tBot#0" expanded="false" />
+            <element signature="method#listMod#0;class#tBot#0" expanded="false" />
+            <element signature="method#viewPoints#0;class#tBot#0" expanded="false" />
+            <element signature="method#adminCommands#0;class#tBot#0" expanded="false" />
+            <element signature="method#onJoin#0;class#tBot#0" expanded="false" />
+            <element signature="method#onPart#0;class#tBot#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/json.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#viewPoints#0;class#tBot#0" expanded="false" />
+            <element signature="method#readUrl#0;class#json#0" expanded="false" />
+            <element signature="method#save#0;class#json#0" expanded="false" />
+            <element signature="method#Reader#0;class#json#0" expanded="false" />
+            <element signature="method#Writer#0;class#json#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="815">
+          <caret line="66" column="51" lean-forward="true" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
