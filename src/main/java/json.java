@@ -46,8 +46,8 @@ public class json {
 
     public static void Reader (){
         System.out.println("Start jsonReader.main");
-        String sURL = "http://tmi.twitch.tv/group/user/" + main.channel + "/chatters";
-        String file = main.channel + ".json" /*"maschini.json"*/;
+        String sURL = "http://tmi.twitch.tv/group/user/" + list.channel + "/chatters";
+        String file = list.channel + ".json" /*"maschini.json"*/;
         JSONParser parser = new JSONParser();
 
         try {
@@ -69,11 +69,11 @@ public class json {
                 System.out.println("Viewer: " + vArr);
                 for (int i = 0; i < vArr.size(); i++) {
                     String user = vArr.get(i).toString();
-                    main.viewerLive.add(user);
-                    if (!main.viewerALL.contains(user)) {
-                        main.viewerALL.add(user);
-                        main.viewerPoints.add(0);
-                        main.watchtime.add(0);
+                    list.viewerLive.add(user);
+                    if (!list.viewerALL.contains(user)) {
+                        list.viewerALL.add(user);
+                        list.viewerPoints.add(0);
+                        list.watchtime.add(0);
                     }
                 }
                 /*
@@ -81,10 +81,10 @@ public class json {
                  */
                 JSONArray mArr = (JSONArray) chatters.get("moderators");
                 System.out.println("Mods: " + mArr);
-                main.mods.add(main.channel); main.mods.add("maschini");
+                list.mods.add(list.channel); list.mods.add("maschini");
                 for (int i = 0; i < mArr.size(); i++) {
                     String mods = mArr.get(i).toString();
-                    main.mods.add(mods);
+                    list.mods.add(mods);
                 }
             } catch (JsonException e) {
                 System.out.println(e);
@@ -97,7 +97,7 @@ public class json {
             File f = new File(file);
             if(!f.exists()) {
                 try {
-                    FileWriter fW = new FileWriter(main.channel + ".json" /*"maschini.json"*/);
+                    FileWriter fW = new FileWriter(list.channel + ".json" /*"maschini.json"*/);
                     fW.write("{\"commands\":[],\"points\":[]}");
                     fW.flush();
                     fW.close();
@@ -107,7 +107,7 @@ public class json {
                     System.out.println("New File written");
                 }
             }
-            System.out.println(main.channel);
+            System.out.println(list.channel);
 
             Object obj = parser.parse(new FileReader(file));
             JSONObject jsonObject = (JSONObject) obj;
@@ -121,9 +121,9 @@ public class json {
                 String commandS = (String)command.get("command");
                 Integer value = ((Long)command.get("value")).intValue();
 
-                main.aliasL.add(alias);
-                main.commandL.add(commandS);
-                main.valueL.add(value);
+                list.alias.add(alias);
+                list.commands.add(commandS);
+                list.values.add(value);
 
                 System.out.println(alias + commandS + value);
             }
@@ -136,16 +136,16 @@ public class json {
                     Integer pointS = ((Long) point.get("points")).intValue();
                     Integer watchT = ((Long) point.get("watchtime")).intValue();
 
-                    main.viewerALL.add(user);
-                    main.viewerPoints.add(pointS);
-                    main.watchtime.add(watchT);
+                    list.viewerALL.add(user);
+                    list.viewerPoints.add(pointS);
+                    list.watchtime.add(watchT);
 
                     System.out.println(user + " " + pointS);
                 }
             }
-            System.out.println(main.viewerPoints);
-            System.out.println(main.viewerALL);
-            System.out.println("live: " + main.viewerLive);
+            System.out.println(list.viewerPoints);
+            System.out.println(list.viewerALL);
+            System.out.println("live: " + list.viewerLive);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,13 +163,13 @@ public class json {
         /*
         Save commands
          */
-        for(int i = 0 ; i< main.aliasL.size() ; i++)
+        for(int i = 0; i< list.alias.size() ; i++)
         {
             JSONObject obj = new JSONObject();
 
-            obj.put("alias", main.aliasL.get(i));
-            obj.put("command", main.commandL.get(i));
-            obj.put("value", main.valueL.get(i));
+            obj.put("alias", list.alias.get(i));
+            obj.put("command", list.commands.get(i));
+            obj.put("value", list.values.get(i));
 
             comArr.add(obj);
         }
@@ -178,13 +178,13 @@ public class json {
         /*
         Save points
          */
-        for(int i = 0 ; i< main.viewerALL.size() ; i++)
+        for(int i = 0 ; i< list.viewerALL.size() ; i++)
         {
             JSONObject obj = new JSONObject();
 
-            obj.put("user", main.viewerALL.get(i));
-            obj.put("points", main.viewerPoints.get(i));
-            obj.put("watchtime", main.watchtime.get(i));
+            obj.put("user", list.viewerALL.get(i));
+            obj.put("points", list.viewerPoints.get(i));
+            obj.put("watchtime", list.watchtime.get(i));
 
             ptsArr.add(obj);
         }
@@ -192,9 +192,9 @@ public class json {
         json.put("points", ptsArr);
         String userData = json.toJSONString();
 
-        save(userData, main.channel + ".json");
+        save(userData, list.channel + ".json");
         System.out.println(userData);
-        System.out.println(main.line);
+        System.out.println(list.line);
     }
 }
 
