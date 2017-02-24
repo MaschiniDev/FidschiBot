@@ -25,7 +25,8 @@ public class threads {
                 }
             }
         });
-        pointGiver.start();
+        if (start)
+            pointGiver.start();
     }
 
     static void watchTime(boolean start) {
@@ -53,7 +54,8 @@ public class threads {
                 }
             }
         });
-        timeGiver.start();
+        if (start)
+            timeGiver.start();
     }
 
     static void autoSave(boolean start) {
@@ -70,6 +72,7 @@ public class threads {
                 }
             }
         });
-        save.start();
+        if (start)
+            save.start();
     }
 }
