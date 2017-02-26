@@ -1,18 +1,11 @@
 import org.jibble.pircbot.PircBot;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
-public class tBot extends PircBot {
+public class BotC extends PircBot {
     /*
     *   PircBot
     *   (c) Paul Mutton 2001-2013
     */
-    public tBot() throws Exception {
+    public BotC() throws Exception {
         this.setName("derfidschi");
         this.connect("irc.chat.twitch.tv", 6667, "oauth:wina1jfkwzqzoraqb0vqy7jes8m93l");
         this.sendRawLine("CAP REQ :twitch.tv/membership");
@@ -21,25 +14,25 @@ public class tBot extends PircBot {
     }
 
     private void listMod(String user, boolean add) {
-        if (!list.viewerLive.contains(user)) {
+        if (!Lists.viewerLive.contains(user)) {
             if (add) {
-                    if (list.viewerALL.contains(user)) {
+                    if (Lists.viewerALL.contains(user)) {
                         //add user and points to Live
-                        if (!list.viewerLive.contains(user)) {
-                            list.viewerLive.add(user);
-                            log.write("Added " + user + " (Existing User)");
+                        if (!Lists.viewerLive.contains(user)) {
+                            Lists.viewerLive.add(user);
+                            Log.write("Added " + user + " (Existing User)");
                         }
                     } else {
-                        //add new user to Main list
-                        list.viewerALL.add(user);
-                        list.viewerPoints.add(1);
-                        //add new user to Live list
-                        list.viewerLive.add(user);
-                        log.write("Added " + user + " (New User)");
+                        //add new user to Main Lists
+                        Lists.viewerALL.add(user);
+                        Lists.viewerPoints.add(1);
+                        //add new user to Live Lists
+                        Lists.viewerLive.add(user);
+                        Log.write("Added " + user + " (New User)");
                     }
             } else if (!add) {
-                list.viewerLive.remove(user);
-                log.write("Removed " + user);
+                Lists.viewerLive.remove(user);
+                Log.write("Removed " + user);
             }
         }
     }
@@ -49,72 +42,72 @@ public class tBot extends PircBot {
         String[] comWords = input.split(" ");
         String response = "";
 
-        if (list.mods.contains(user)) {
+        if (Lists.mods.contains(user)) {
             if (comWords[0].equalsIgnoreCase("!help")) {
-                String help = "Possible Commands: save, load, help, exit, list, add, remove";
-                log.write(help);
-            } else if (comWords[0].equalsIgnoreCase("!list")) {
+                String help = "Possible Commands: save, load, help, exit, Lists, add, remove";
+                Log.write(help);
+            } else if (comWords[0].equalsIgnoreCase("!Lists")) {
                 if (comWords[1].equalsIgnoreCase("live")) {
-                    String live = "Viewercount " + list.viewerLive.size() + as + "Live viewer: " + list.viewerLive;
-                    log.write(live); sendAction(list.channel, live);
+                    String live = "Viewercount " + Lists.viewerLive.size() + as + "Live viewer: " + Lists.viewerLive;
+                    Log.write(live); sendAction(Lists.channel, live);
                 } else if (comWords[1].equalsIgnoreCase("all")) {
-                    log.write(list.viewerALL.toString());
+                    Log.write(Lists.viewerALL.toString());
                 } else if (comWords[1].equalsIgnoreCase("commands")) {
-                    response = list.alias.toString();
+                    response = Lists.alias.toString();
                 }
 
             } else if (comWords[0].equalsIgnoreCase("!add")) {
                 //Command call (!example)
-                list.alias.add(comWords[1].toLowerCase());
+                Lists.alias.add(comWords[1].toLowerCase());
                 //Command value for Counts, etc
-                list.values.add(0);
+                Lists.values.add(0);
                 //Command Text -> Delete from Linestring all but the Text answer
                 String comText = input;
                 comText = comText.replace(comWords[0], "");
                 comText = comText.replace(comWords[1], "");
                 comText = comText.replace("  ", "");
-                list.commands.add(comText);
+                Lists.commands.add(comText);
 
                 String add = comWords[1] + " 0 :" + comText;
-                log.write(add); sendAction("+" + list.channel, add);
+                Log.write(add); sendAction("+" + Lists.channel, add);
 
             } else if (comWords[0].equalsIgnoreCase("!remove")) {
-                int index = list.alias.indexOf(comWords[1]);
+                int index = Lists.alias.indexOf(comWords[1]);
 
                 if (index == -1)
                     response = "This command dont Exist";
                 else {
-                    System.out.println(list.alias);
-                    list.alias.remove(index);
-                    list.values.remove(index);
-                    list.commands.remove(index);
-                    System.out.println(list.alias);
+                    System.out.println(Lists.alias);
+                    Lists.alias.remove(index);
+                    Lists.values.remove(index);
+                    Lists.commands.remove(index);
+                    System.out.println(Lists.alias);
 
                     response = "Removed Command " + comWords[1];
                 }
             } else if (comWords[0].equalsIgnoreCase("!edit")) {
-                int index = list.alias.indexOf(comWords[1]);
+                int index = Lists.alias.indexOf(comWords[1]);
                 int newVal = Integer.parseInt(comWords[2]);
 
                 if (!input.contains("+"))
-                    list.values.add(index, newVal);
+                    Lists.values.add(index, newVal);
                 else if (input.contains("+")) {
-                    list.values.add(index, list.values.get(index) + newVal);
+                    Lists.values.add(index, Lists.values.get(index) + newVal);
                 }
             }
         }
         if (comWords[0].equals("!gamble")) {
             int pointstoGamble = Integer.parseInt(comWords[1]);
-            int index = list.viewerALL.indexOf(user);
+            int index = Lists.viewerALL.indexOf(user);
             int winnedPoints = 0;
 
             String mes = "";
 
-            System.out.println(list.viewerPoints.get(index));
+            System.out.println(Lists.viewerPoints.get(index));
 
-            if (list.viewerPoints.get(index) < pointstoGamble) {
+            if (Lists.viewerPoints.get(index) < pointstoGamble) {
                 return "Du hast zu wenig Punkte";
-            } else if (list.viewerPoints.get(index) >= pointstoGamble) {
+            } else if (Lists.viewerPoints.get(index) >= pointstoGamble) {
                 int winNum = (int) (Math.random() * 100);
                 if (winNum < 60) {
                     winnedPoints = -pointstoGamble;
@@ -128,48 +121,48 @@ public class tBot extends PircBot {
                         mes = "Rolled " + winNum + ". Du hast " + winnedPoints + " gewonnen";
                     }
                 }
-                list.viewerPoints.add(list.viewerPoints.get(index) + winnedPoints);
+                Lists.viewerPoints.add(Lists.viewerPoints.get(index) + winnedPoints);
                 return mes;
             }
         }
 
-        list.write = true;
+        Lists.write = true;
         return response;
     }
     
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
-        log.write(sender + ": " + message);
+        Log.write(sender + ": " + message);
         message = message.toLowerCase();
         String[] mesArr = message.split(" ");
 
         if(mesArr[0].toLowerCase().equals(message)) {
             //Get Position of Command -> Set Index
-            int indexCom = list.alias.indexOf(message);
-            String response = list.commands.get(indexCom);
+            int indexCom = Lists.alias.indexOf(message);
+            String response = Lists.commands.get(indexCom);
             //Value Increase
-            int value = list.values.get(indexCom);
+            int value = Lists.values.get(indexCom);
             if (response.contains("{value}")) {
                 value++;
-                list.values.set(indexCom, value);}
+                Lists.values.set(indexCom, value);}
             //Insert Variables
             String count = Long.toString(value);
             String antwort = response.replace("{value}", count);
             antwort = antwort.replace("{sender}", sender);
-            antwort = antwort.replace("{points}", list.viewerPoints.get(list.viewerALL.indexOf(sender)).toString());
+            antwort = antwort.replace("{points}", Lists.viewerPoints.get(Lists.viewerALL.indexOf(sender)).toString());
             //Send Message + Protocoll
             sendMessage(channel, antwort);
-            log.write("Antworte " + sender + " -> " + message + " (" + value + ")");
+            Log.write("Antworte " + sender + " -> " + message + " (" + value + ")");
         } else {
             sendMessage(channel, systemCommands(message, sender));
         }
     }
 
     public void onJoin (String channel, String sender, String login, String hostname) {
-        log.write("[+] " + sender + " guckt zu");
+        Log.write("[+] " + sender + " guckt zu");
         listMod(sender, true);
     }
     public void onPart (String channel, String sender, String login, String hostname) {
-        log.write("[-] " + sender + " guckt nicht mehr zu");
+        Log.write("[-] " + sender + " guckt nicht mehr zu");
         listMod(sender, false);
     }
 }

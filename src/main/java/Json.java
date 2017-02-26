@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 
-public class json {
+public class Json {
     private static String readUrl(String urlString) throws Exception {
         BufferedReader reader = null;
         try {
@@ -45,9 +45,9 @@ public class json {
     }
 
     public static void Reader (){
-        System.out.println("Start jsonReader.main");
-        String sURL = "http://tmi.twitch.tv/group/user/" + list.channel + "/chatters";
-        String file = list.channel + ".json" /*"maschini.json"*/;
+        System.out.println("Start jsonReader.Main");
+        String sURL = "http://tmi.twitch.tv/group/user/" + Lists.channel + "/chatters";
+        String file = Lists.channel + ".Json" /*"maschini.Json"*/;
         JSONParser parser = new JSONParser();
 
         try {
@@ -69,22 +69,22 @@ public class json {
                 System.out.println("Viewer: " + vArr);
                 for (int i = 0; i < vArr.size(); i++) {
                     String user = vArr.get(i).toString();
-                    list.viewerLive.add(user);
-                    if (!list.viewerALL.contains(user)) {
-                        list.viewerALL.add(user);
-                        list.viewerPoints.add(0);
-                        list.watchtime.add(0);
+                    Lists.viewerLive.add(user);
+                    if (!Lists.viewerALL.contains(user)) {
+                        Lists.viewerALL.add(user);
+                        Lists.viewerPoints.add(0);
+                        Lists.watchtime.add(0);
                     }
                 }
                 /*
-                Add Mods to List (old: Create Blacklist)
+                Add Mods to Lists (old: Create Blacklist)
                  */
                 JSONArray mArr = (JSONArray) chatters.get("moderators");
                 System.out.println("Mods: " + mArr);
-                list.mods.add(list.channel); list.mods.add("maschini");
+                Lists.mods.add(Lists.channel); Lists.mods.add("maschini");
                 for (int i = 0; i < mArr.size(); i++) {
                     String mods = mArr.get(i).toString();
-                    list.mods.add(mods);
+                    Lists.mods.add(mods);
                 }
             } catch (JsonException e) {
                 System.out.println(e);
@@ -97,7 +97,7 @@ public class json {
             File f = new File(file);
             if(!f.exists()) {
                 try {
-                    FileWriter fW = new FileWriter(list.channel + ".json" /*"maschini.json"*/);
+                    FileWriter fW = new FileWriter(Lists.channel + ".Json" /*"maschini.Json"*/);
                     fW.write("{\"commands\":[],\"points\":[]}");
                     fW.flush();
                     fW.close();
@@ -107,7 +107,7 @@ public class json {
                     System.out.println("New File written");
                 }
             }
-            System.out.println(list.channel);
+            System.out.println(Lists.channel);
 
             Object obj = parser.parse(new FileReader(file));
             JSONObject jsonObject = (JSONObject) obj;
@@ -121,9 +121,9 @@ public class json {
                 String commandS = (String)command.get("command");
                 Integer value = ((Long)command.get("value")).intValue();
 
-                list.alias.add(alias);
-                list.commands.add(commandS);
-                list.values.add(value);
+                Lists.alias.add(alias);
+                Lists.commands.add(commandS);
+                Lists.values.add(value);
 
                 System.out.println(alias + commandS + value);
             }
@@ -136,16 +136,16 @@ public class json {
                     Integer pointS = ((Long) point.get("points")).intValue();
                     Integer watchT = ((Long) point.get("watchtime")).intValue();
 
-                    list.viewerALL.add(user);
-                    list.viewerPoints.add(pointS);
-                    list.watchtime.add(watchT);
+                    Lists.viewerALL.add(user);
+                    Lists.viewerPoints.add(pointS);
+                    Lists.watchtime.add(watchT);
 
                     System.out.println(user + " " + pointS);
                 }
             }
-            System.out.println(list.viewerPoints);
-            System.out.println(list.viewerALL);
-            System.out.println("live: " + list.viewerLive);
+            System.out.println(Lists.viewerPoints);
+            System.out.println(Lists.viewerALL);
+            System.out.println("live: " + Lists.viewerLive);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,13 +163,13 @@ public class json {
         /*
         Save commands
          */
-        for(int i = 0; i< list.alias.size() ; i++)
+        for(int i = 0; i< Lists.alias.size() ; i++)
         {
             JSONObject obj = new JSONObject();
 
-            obj.put("alias", list.alias.get(i));
-            obj.put("command", list.commands.get(i));
-            obj.put("value", list.values.get(i));
+            obj.put("alias", Lists.alias.get(i));
+            obj.put("command", Lists.commands.get(i));
+            obj.put("value", Lists.values.get(i));
 
             comArr.add(obj);
         }
@@ -178,13 +178,13 @@ public class json {
         /*
         Save points
          */
-        for(int i = 0 ; i< list.viewerALL.size() ; i++)
+        for(int i = 0; i< Lists.viewerALL.size() ; i++)
         {
             JSONObject obj = new JSONObject();
 
-            obj.put("user", list.viewerALL.get(i));
-            obj.put("points", list.viewerPoints.get(i));
-            obj.put("watchtime", list.watchtime.get(i));
+            obj.put("user", Lists.viewerALL.get(i));
+            obj.put("points", Lists.viewerPoints.get(i));
+            obj.put("watchtime", Lists.watchtime.get(i));
 
             ptsArr.add(obj);
         }
@@ -192,9 +192,9 @@ public class json {
         json.put("points", ptsArr);
         String userData = json.toJSONString();
 
-        save(userData, list.channel + ".json");
+        save(userData, Lists.channel + ".Json");
         System.out.println(userData);
-        System.out.println(list.line);
+        System.out.println(Lists.line);
     }
 }
 

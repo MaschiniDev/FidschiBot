@@ -1,6 +1,6 @@
 import java.util.concurrent.TimeUnit;
 
-public class threads {
+public class Threads {
 
     static void viewerPoints(boolean start) {
         Thread pointGiver = new Thread(new Runnable() {
@@ -10,12 +10,12 @@ public class threads {
                         TimeUnit.MINUTES.sleep(5);
 
                         //loop to get all live user
-                        for (int i = 0; i< list.viewerLive.size(); i++ ) {
-                            String user = list.viewerLive.get(i); //live user from list
-                            int index = list.viewerALL.indexOf(user); //position of liveUser in main list
-                            int pointsU = list.viewerPoints.get(index); //get user points
+                        for (int i = 0; i< Lists.viewerLive.size(); i++ ) {
+                            String user = Lists.viewerLive.get(i); //live user from Lists
+                            int index = Lists.viewerALL.indexOf(user); //position of liveUser in Main Lists
+                            int pointsU = Lists.viewerPoints.get(index); //get user points
                             pointsU++; //increase points
-                            list.viewerPoints.set(index, pointsU); //set new points value
+                            Lists.viewerPoints.set(index, pointsU); //set new points value
 
                             System.out.println(user + " + 1 Point");
                         }
@@ -37,12 +37,12 @@ public class threads {
                         TimeUnit.MINUTES.sleep(1);
 
                         //loop to get all live user
-                        for (int i = 0; i< list.viewerLive.size(); i++ ) {
-                            String user = list.viewerLive.get(i); //live user from list
-                            int index = list.viewerALL.indexOf(user); //position of liveUser in main list
-                            int watch = list.watchtime.get(index); //get user watchtime
+                        for (int i = 0; i< Lists.viewerLive.size(); i++ ) {
+                            String user = Lists.viewerLive.get(i); //live user from Lists
+                            int index = Lists.viewerALL.indexOf(user); //position of liveUser in Main Lists
+                            int watch = Lists.watchtime.get(index); //get user watchtime
                             watch++; //increase points
-                            list.watchtime.set(index, watch); //set new time value
+                            Lists.watchtime.set(index, watch); //set new time value
 
                             System.out.println(user + " + 1 Minute");
                         }
@@ -64,8 +64,8 @@ public class threads {
                 while (true) {
                     try {
                         TimeUnit.MINUTES.sleep(30);
-                        json.Writer();
-                        json.Reader();
+                        Json.Writer();
+                        Json.Reader();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
