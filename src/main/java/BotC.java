@@ -37,7 +37,7 @@ public class BotC extends PircBot {
         }
     }
 
-    public String systemCommands(String input, String user) {
+    private String systemCommands(String input, String user) {
         String as = "\n";
         String[] comWords = input.split(" ");
         String response = "";

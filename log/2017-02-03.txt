@@ -1,0 +1,8 @@
+
+[23:22] [+] derfidschi guckt zu
+[23:22] Added derfidschi (Existing User)
+[23:23] maschini: !Lists alias
+[23:23] maschini: !Lists commands
+[23:24] [+] maschinilive guckt zu
+[23:24] [+] maschini guckt zu
+[23:24] Added maschini (Existing User)

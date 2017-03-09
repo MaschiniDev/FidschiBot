@@ -1,0 +1,7 @@
+
+[15:10] [+] derfidschi guckt zu
+[15:10] maschini: !add !test 0 Hallo
+[15:10] !test 0    Hallo
+[15:10] maschini: !help
+[15:11] Possible Commands: save, load, help, exit, Lists, add, remove
+[15:12] [+] maschini guckt zu

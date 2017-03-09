@@ -2,14 +2,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import javax.json.JsonException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 
 
-public class Json {
+class Json {
     private static String readUrl(String urlString) throws Exception {
         BufferedReader reader = null;
         try {
@@ -44,7 +43,7 @@ public class Json {
         }
     }
 
-    public static void Reader (){
+    static void Reader (){
         System.out.println("Start jsonReader.Main");
         String sURL = "http://tmi.twitch.tv/group/user/" + Lists.channel + "/chatters";
         String file = Lists.channel + ".Json" /*"maschini.Json"*/;
@@ -86,8 +85,6 @@ public class Json {
                     String mods = mArr.get(i).toString();
                     Lists.mods.add(mods);
                 }
-            } catch (JsonException e) {
-                System.out.println(e);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -132,15 +129,9 @@ public class Json {
                 for (int i = 0; i < points.size(); i++) {
                     JSONObject point = (JSONObject) points.get(i);
 
-                    String user = (String) point.get("user");
-                    Integer pointS = ((Long) point.get("points")).intValue();
-                    Integer watchT = ((Long) point.get("watchtime")).intValue();
-
-                    Lists.viewerALL.add(user);
-                    Lists.viewerPoints.add(pointS);
-                    Lists.watchtime.add(watchT);
-
-                    System.out.println(user + " " + pointS);
+                    Lists.viewerALL.add((String) point.get("user"));
+                    Lists.viewerPoints.add(((Long) point.get("points")).intValue());
+                    Lists.watchtime.add(((Long) point.get("watchtime")).intValue());
                 }
             }
             System.out.println(Lists.viewerPoints);
@@ -151,15 +142,13 @@ public class Json {
             e.printStackTrace();
         }
     }
-    public static void Writer () {
+    static void Writer () {
         /*
-        Arrays, Objects
+        Arrays and Objects
          */
         JSONArray comArr = new JSONArray();
         JSONArray ptsArr = new JSONArray();
-
         JSONObject json = new JSONObject();
-
         /*
         Save commands
          */

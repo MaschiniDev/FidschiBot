@@ -63,9 +63,11 @@ public class Threads {
             public void run() {
                 while (true) {
                     try {
-                        TimeUnit.MINUTES.sleep(30);
+                        TimeUnit.MINUTES.sleep(2);
+                        Log.write("Start Autosave");
                         Json.Writer();
                         Json.Reader();
+                        Log.write("Autosaved");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

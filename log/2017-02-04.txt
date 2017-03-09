@@ -1,0 +1,5 @@
+[23:59] [+] derfidschi guckt zu
+[23:59] Added derfidschi (Existing User)
+[23:59] maschini: !gamble 1
+[00:00] [+] maschini guckt zu
+[00:00] Added maschini (Existing User)
