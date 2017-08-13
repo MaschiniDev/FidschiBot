@@ -1,19 +1,24 @@
 import org.jibble.pircbot.PircBot;
 
-public class BotC extends PircBot {
+public class Bot extends PircBot {
     /*
     *   PircBot
     *   (c) Paul Mutton 2001-2013
     */
-    public BotC() throws Exception {
-        this.setName("derfidschi");
-        this.connect("irc.chat.twitch.tv", 6667, "oauth:wina1jfkwzqzoraqb0vqy7jes8m93l");
-        this.sendRawLine("CAP REQ :twitch.tv/membership");
+    public Bot() {
+        try {
+            this.setName("derfidschi");
+            this.connect("irc.chat.twitch.tv", 6667, "oauth:wina1jfkwzqzoraqb0vqy7jes8m93l");
+            this.sendRawLine("CAP REQ :twitch.tv/membership");
 
-        this.setVerbose(false); //debug
+            this.setVerbose(false); //debug
+        } catch (Exception e) {
+            e.getCause();
+        }
     }
 
     private void listMod(String user, boolean add) {
+        /*
         if (!Lists.viewerLive.contains(user)) {
             if (add) {
                     if (Lists.viewerALL.contains(user)) {
@@ -35,9 +40,11 @@ public class BotC extends PircBot {
                 Log.write("Removed " + user);
             }
         }
+        */
     }
 
     private String systemCommands(String input, String user) {
+        /*
         String as = "\n";
         String[] comWords = input.split(" ");
         String response = "";
@@ -128,9 +135,11 @@ public class BotC extends PircBot {
 
         Lists.write = true;
         return response;
+        */
     }
     
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
+        /*
         Log.write(sender + ": " + message);
         message = message.toLowerCase();
         String[] mesArr = message.split(" ");
@@ -155,14 +164,15 @@ public class BotC extends PircBot {
         } else {
             sendMessage(channel, systemCommands(message, sender));
         }
+        */
     }
 
     public void onJoin (String channel, String sender, String login, String hostname) {
-        Log.write("[+] " + sender + " guckt zu");
+        //Log.write("[+] " + sender + " guckt zu");
         listMod(sender, true);
     }
     public void onPart (String channel, String sender, String login, String hostname) {
-        Log.write("[-] " + sender + " guckt nicht mehr zu");
+        //Log.write("[-] " + sender + " guckt nicht mehr zu");
         listMod(sender, false);
     }
 }

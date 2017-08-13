@@ -24,15 +24,19 @@ public class TBot extends PircBot{
             response = systemCmd(cmdAlias, cmdContext, splittedCommand);
         }
 
+        System.out.print(response);
         return response;
     }
 
-    static private String systemCmd(String alias, String context, String[] splCmd) { //TODO Neue Bot Class
+    static public String systemCmd(String alias, String context, String[] splCmd) { //TODO Neue Bot Class
         String response = "";
 
         if (alias.equals("!help")) {
-            if (splCmd[1].equals("live")) {
-                response = "Possible Commands: save, load, help, exit, Lists, add, remove";
+            if (splCmd[1] == null) {
+                response = "Verfügbare Optionen: live, all, commands";
+                System.out.print("test");
+            } else if (splCmd[1].equals("live")) {
+                response = Lists.viewerLive.toString().replace("[", "").replace("]", "");
             } else if (splCmd[1].equals("all")) {
                 response = Lists.viewerALL.toString().replace("[", "").replace("]", "");
             } else if (splCmd[1].equals("commands")) {

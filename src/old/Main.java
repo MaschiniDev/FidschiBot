@@ -18,7 +18,7 @@ public class Main {
         //#buffreader
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         //initiate Bot
-        BotC bot = new BotC();
+        TBot bot = new TBot();
         //parameter for join channel
         System.out.println(Lists.line);
 

@@ -5,6 +5,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 
 
@@ -43,69 +44,75 @@ class Json {
         }
     }
 
-    static void Reader (){
+    static void Reader (String channel){
         System.out.println("Start jsonReader.Main");
-        String sURL = "http://tmi.twitch.tv/group/user/" + Lists.channel + "/chatters";
-        String file = Lists.channel + ".Json" /*"maschini.Json"*/;
+        String sURL = "http://tmi.twitch.tv/group/user/" + channel + "/chatters";
+        String file = channel + ".Json" /*"maschini.Json"*/;
         JSONParser parser = new JSONParser();
 
+        /*
+        Get viewer infos from twitch
+         */
         try {
             URL url = new URL(sURL);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
             request.connect();
         } catch (IOException ioe){
             System.out.println(ioe);
-        } finally {
-            try {
-                Object obj = parser.parse(readUrl(sURL));
-                JSONObject jsonObject = (JSONObject) obj;
-
-                String viewerCount = ((JSONObject) obj).get("chatter_count").toString();
-                System.out.println(viewerCount);
-
-                JSONObject chatters = (JSONObject) jsonObject.get("chatters");
-                JSONArray vArr = (JSONArray) chatters.get("viewers");
-                System.out.println("Viewer: " + vArr);
-                for (int i = 0; i < vArr.size(); i++) {
-                    String user = vArr.get(i).toString();
-                    Lists.viewerLive.add(user);
-                    if (!Lists.viewerALL.contains(user)) {
-                        Lists.viewerALL.add(user);
-                        Lists.viewerPoints.add(0);
-                        Lists.watchtime.add(0);
-                    }
-                }
-                /*
-                Add Mods to Lists (old: Create Blacklist)
-                 */
-                JSONArray mArr = (JSONArray) chatters.get("moderators");
-                System.out.println("Mods: " + mArr);
-                Lists.mods.add(Lists.channel); Lists.mods.add("maschini");
-                for (int i = 0; i < mArr.size(); i++) {
-                    String mods = mArr.get(i).toString();
-                    Lists.mods.add(mods);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
 
+        try {
+            Object obj = parser.parse(readUrl(sURL));
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONObject chatters = (JSONObject) jsonObject.get("chatters");
+            JSONArray viewers = (JSONArray) chatters.get("viewers");
+
+            Data.live = Integer.parseInt ((((JSONObject) obj).get("chatter_count").toString()));
+            System.out.println(Data.live);
+
+            for (int i = 0; i < viewers.size(); i++) {
+                if (Data.user.containsKey(viewers.get(i))) {
+                    Data.viewer.add(viewers.get(i).toString());
+                } else if (!Data.user.containsKey(viewers.get(i))) {
+                    //Add new user to Map
+                    HashMap<String, Integer> userStats = new HashMap<String, Integer>();
+                        userStats.put("time", 0);
+                        userStats.put("points", 0);
+
+                    Data.user.put(viewers.get(i).toString(), userStats);
+                    //Add user to Live
+                    Data.viewer.add(viewers.get(i).toString());
+                }
+            }
+            /*
+            TODO Add Mods to Lists (old: Create Blacklist)
+             */
+            //JSONArray mArr = (JSONArray) chatters.get("moderators");
+            //System.out.println("Mods: " + mArr);
+            //Lists.mods.add(Lists.channel); Lists.mods.add("maschini");
+            //for (int i = 0; i < mArr.size(); i++) {
+            //    String mods = mArr.get(i).toString();
+            //    Lists.mods.add(mods);
+            //}
+            } catch (Exception e) {
+                e.printStackTrace();
+        }
+
+        /*
+        get viewer infos from local Data
+         */
         try {
             File f = new File(file);
             if(!f.exists()) {
                 try {
-                    FileWriter fW = new FileWriter(Lists.channel + ".Json" /*"maschini.Json"*/);
-                    fW.write("{\"commands\":[],\"points\":[]}");
+                    FileWriter fW = new FileWriter(channel + ".Json" /*"maschini.Json"*/);
+                    fW.write("{\"commands\":[],\"users\":[]}");
                     fW.flush();
                     fW.close();
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
-                } finally {
-                    System.out.println("New File written");
                 }
             }
-            System.out.println(Lists.channel);
-
             Object obj = parser.parse(new FileReader(file));
             JSONObject jsonObject = (JSONObject) obj;
 
@@ -124,19 +131,19 @@ class Json {
 
                 System.out.println(alias + commandS + value);
             }
-            JSONArray points = (JSONArray) jsonObject.get("points");
-            if (points != null) {
-                for (int i = 0; i < points.size(); i++) {
-                    JSONObject point = (JSONObject) points.get(i);
+            JSONArray users = (JSONArray) jsonObject.get("users");
+            if (users != null) {
+                for (int i = 0; i < users.size(); i++) {
+                    JSONObject selectedUser = (JSONObject) users.get(i);
+                    String username = selectedUser.get("user").toString();
 
-                    Lists.viewerALL.add((String) point.get("user"));
-                    Lists.viewerPoints.add(((Long) point.get("points")).intValue());
-                    Lists.watchtime.add(((Long) point.get("watchtime")).intValue());
+                    HashMap<String, Integer> user = Data.user.get(username);
+                    user.put("time", ((Long) selectedUser.get("watchtime")).intValue());
+                    user.put("points", ((Long) selectedUser.get("points")).intValue());
+
+                    Data.user.put(username, user);
                 }
             }
-            System.out.println(Lists.viewerPoints);
-            System.out.println(Lists.viewerALL);
-            System.out.println("live: " + Lists.viewerLive);
 
         } catch (Exception e) {
             e.printStackTrace();
