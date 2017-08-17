@@ -3,9 +3,6 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        /*
-        TODO Start
-         */
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         Bot bot = new Bot();
 
@@ -15,6 +12,10 @@ public class Main {
         Json.Reader(channel);
         bot.joinChannel("#" + channel);
 
-
+        String exit = console.readLine();
+        if (exit != null) {
+            Json.Writer(channel);
+            System.exit(0);
+        }
     }
 }

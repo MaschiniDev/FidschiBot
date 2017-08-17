@@ -8,4 +8,6 @@ public class Data {
     static List viewer = null;
     static HashMap<String, HashMap<String, Integer>> user = new HashMap<String, HashMap<String, Integer>>();
 
+    static HashMap<String, String> commandMessage = new HashMap<String, String>();
+    static HashMap<String, Integer> commandValues = new HashMap<String, Integer>();
 }

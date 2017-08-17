@@ -120,26 +120,24 @@ class Json {
             Iterator it = commands.iterator();
             for (int i = 0; i < commands.size(); i++) {
                 JSONObject command = (JSONObject) it.next();
-
                 String alias = (String)command.get("alias");
-                String commandS = (String)command.get("command");
-                Integer value = ((Long)command.get("value")).intValue();
 
-                Lists.alias.add(alias);
-                Lists.commands.add(commandS);
-                Lists.values.add(value);
-
-                System.out.println(alias + commandS + value);
+                Data.commandMessage.put(alias, (String)command.get("command"));
+                Data.commandValues.put(alias, ((Long)command.get("value")).intValue());
             }
             JSONArray users = (JSONArray) jsonObject.get("users");
             if (users != null) {
                 for (int i = 0; i < users.size(); i++) {
+                    if (Data.user.containsKey(users.get(i))) {
+
+                    }
                     JSONObject selectedUser = (JSONObject) users.get(i);
                     String username = selectedUser.get("user").toString();
 
+                    //TODO fix NullPointer
                     HashMap<String, Integer> user = Data.user.get(username);
-                    user.put("time", ((Long) selectedUser.get("watchtime")).intValue());
-                    user.put("points", ((Long) selectedUser.get("points")).intValue());
+                    user.put("time", ((Integer) selectedUser.get("watchtime")));
+                    user.put("points", ((Integer) selectedUser.get("points")));
 
                     Data.user.put(username, user);
                 }
@@ -149,48 +147,50 @@ class Json {
             e.printStackTrace();
         }
     }
-    static void Writer () {
+    static void Writer (String channel) {
         /*
         Arrays and Objects
          */
-        JSONArray comArr = new JSONArray();
-        JSONArray ptsArr = new JSONArray();
+        JSONArray arrayCommands = new JSONArray();
+        JSONArray arrayUsers = new JSONArray();
         JSONObject json = new JSONObject();
+
         /*
         Save commands
          */
-        for(int i = 0; i< Lists.alias.size() ; i++)
+        String[] cKeys = (String[]) Data.commandMessage.keySet().toArray();
+        for(int i = 0; i< cKeys.length; i++)
         {
             JSONObject obj = new JSONObject();
+            obj.put("alias", cKeys[i]);
+            obj.put("command", Data.commandMessage.get(cKeys[i]));
+            obj.put("command", Data.commandValues.get(cKeys[i]));
 
-            obj.put("alias", Lists.alias.get(i));
-            obj.put("command", Lists.commands.get(i));
-            obj.put("value", Lists.values.get(i));
-
-            comArr.add(obj);
+            arrayCommands.add(obj);
         }
-        json.put("commands", comArr);
+        json.put("commands", arrayCommands);
 
         /*
         Save points
          */
-        for(int i = 0; i< Lists.viewerALL.size() ; i++)
+        String[] uKeys = (String[]) Data.user.keySet().toArray();
+        for(int i = 0; i< uKeys.length; i++)
         {
             JSONObject obj = new JSONObject();
+            HashMap<String, Integer> user = Data.user.get(uKeys[i]);
 
-            obj.put("user", Lists.viewerALL.get(i));
-            obj.put("points", Lists.viewerPoints.get(i));
-            obj.put("watchtime", Lists.watchtime.get(i));
+            obj.put("user", uKeys[i]);
+            obj.put("points", user.get("points"));
+            obj.put("watchtime", user.get("time"));
 
-            ptsArr.add(obj);
+            arrayUsers.add(obj);
         }
-        //user.put("points", ptsArr);
-        json.put("points", ptsArr);
+        json.put("points", arrayUsers);
         String userData = json.toJSONString();
 
-        save(userData, Lists.channel + ".Json");
+        save(userData, channel + ".Json");
         System.out.println(userData);
-        System.out.println(Lists.line);
+        System.out.println(Data.line);
     }
 }
 

@@ -43,7 +43,7 @@ public class Bot extends PircBot {
         */
     }
 
-    private String systemCommands(String input, String user) {
+    //private String systemCommands(String input, String user) {
         /*
         String as = "\n";
         String[] comWords = input.split(" ");
@@ -136,7 +136,7 @@ public class Bot extends PircBot {
         Lists.write = true;
         return response;
         */
-    }
+    //}
     
     public void onMessage(String channel, String sender, String login, String hostname, String message) {
         /*
